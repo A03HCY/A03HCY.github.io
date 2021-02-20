@@ -11,7 +11,7 @@
 
 ### SNS 小型网络系统  
 
-[*查看SNS手册和代码](https://acdp.top/SNS)
+[*手册和代码](https://acdp.top/SNS)
 
 > 目前最新 Version 0.4.3 持续更新...
 >
@@ -27,7 +27,7 @@
 
 ### Misaka Net Search 御坂网络搜索  
 
-[*查看MNS手册和代码](https://acdp.top/disable)
+[*手册和代码](https://acdp.top/disable)
 
 > 目前最新 Version 1.8.3 不定期更新...  
 >
