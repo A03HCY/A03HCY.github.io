@@ -43,4 +43,4 @@
 
 ［ 奇怪的板块增加了！］
 
-[初中黑历史站点，可能服务器要到期了](http://file.coits.top/1918/home.html)
+[初中黑历史站点，可能服务器要到期了](http://file.coits.top:1030/1918/home.html)
