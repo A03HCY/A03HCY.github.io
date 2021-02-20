@@ -9,7 +9,7 @@
 
 这个板块有着 舟. 绝大部分的项目  
 
-[*查看源代码](https://acdp.top/code)
+[*查看手册和代码](https://acdp.top/code)
 
 #### SNS 小型网络系统  
 
