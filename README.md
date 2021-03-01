@@ -18,7 +18,7 @@
 > Version 0.3.5的所有库都是Python3.x的内置库，方便移植micro  
 
 - 可以让多个不同的设备相互连接通信 
- 
+
 - 可以传输文件，远程桌面控制  
 
 - 最小核心可以移植到micropython开发设备  
@@ -39,10 +39,12 @@
 
 这个项目的搜索结果可以直接放到 SNS 使用，辅助 SNS 搜索设备  
 
-------  
+------
 
 ## 个人可公开资料(  
 
 ［ 奇怪的板块增加了！］
+
+[New.zip](https://acdp.top/New.zip)
 
 [初中黑历史](http://restlink.space:1030/1918/home.html)
