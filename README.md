@@ -44,7 +44,3 @@
 ## 个人可公开资料(  
 
 ［ 奇怪的板块增加了！］
-
-[New.zip](https://acdp.top/New.zip)
-
-[初中黑历史](http://restlink.space:1030/1918/home.html)
