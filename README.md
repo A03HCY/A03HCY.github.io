@@ -9,6 +9,10 @@
 
 这个板块有着 舟. 绝大部分的项目  
 
+### AUT 资料共享网站  
+
+[*下载AUT源文件](https://github.com/A03HCY/AUT/archive/refs/heads/main.zip)
+
 ### SNS 小型网络系统  
 
 [*手册和代码](https://acdp.top/SNS)
