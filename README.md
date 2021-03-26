@@ -15,6 +15,8 @@
 
 ### SNS 小型网络系统  
 
+[*下载SNS源文件](https://github.com/A03HCY/SNS/archive/refs/heads/main.zip)
+
 [*手册和代码](https://acdp.top/SNS)
 
 > 目前最新 Version 0.4.3 持续更新...
