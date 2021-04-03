@@ -1,0 +1,12 @@
+{
+    "Network_Core":{
+        "Path":"/Net",
+        "File":{},
+        "Version":"1.8.2"
+    },
+    "File_Website":{
+        "Path":"/AUT",
+        "File":{},
+        "Version":"1.2.4"
+    }
+}
