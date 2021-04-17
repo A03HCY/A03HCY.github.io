@@ -36,7 +36,7 @@
         <div class="mdui-drawer" id="drawer">
             <ul class="mdui-list" mdui-collapse="{accordion: true}" id="dc">
 
-                <li class="mdui-list-item mdui-ripple" id="d-home">
+                <li class="mdui-list-item mdui-ripple" id="d-home" onclick="GetReadme('README.md');">
                     <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
                     <div class="mdui-list-item-content">Home</div>
                 </li>
@@ -49,7 +49,7 @@
                 </div>
                 <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
                   <li class="mdui-list-item mdui-ripple">Acdp</li>
-                  <li class="mdui-list-item mdui-ripple" id="d-SNS">Network System</li>
+                  <li class="mdui-list-item mdui-ripple" id="d-SNS" onclick="GetReadme('SNS/README.md');">Network System</li>
                   <li class="mdui-list-item mdui-ripple">AUT</li>
                 </ul>
               </li>
@@ -87,13 +87,6 @@
                     message: 'Welcome Here',
                     position: 'right-bottom'
                 });
-                GetReadme("/README.md");
-                document.getElementById('d-home').onclick(function(){
-                    GetReadme("/README.md");
-                })
-                document.getElementById('d-SNS').onclick(function(){
-                    GetReadme("/SNS/README.md");
-                })
             });
         </script>
     </body>
