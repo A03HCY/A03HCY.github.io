@@ -47,7 +47,7 @@
                 <div class="mdui-col-xs-6 mdui-col-sm-4 mdui-p-a-1">.mdui-col-xs-6<br/>.mdui-col-sm-4</div>
               </div>
         </div>
-        <article class="mdui-typo"></article>
+        <article class="mdui-typo mdui-container"></article>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
@@ -56,21 +56,20 @@
         ></script>
         <script>
             function GetReadme() {
-                var f = form;
                 var xmlhttp;
                 if (window.XMLHttpRequest) {
                     xmlhttp = new XMLHttpRequest();
                 } else {
                     xmlhttp = new ActiveXObject('Microsoft.XMLHttp');
                 }
-
                 xmlhttp.onreadystatechange = function() {
                     if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        return xmlhttp.responseText
+                        mdui.$('article').html(
+                            marked(xmlhttp.responseText)
+                        );
                     }
                 }
-
-                xmlhttp.open('GET', "README.md", true);
+                xmlhttp.open('GET', "/README.md", true);
                 xmlhttp.send();
             }
             $(document).ready(function(){ 
@@ -78,10 +77,8 @@
                     message: 'Welcome Here',
                     position: 'right-bottom'
                 });
-                mdui.$('article').html(
-                    marked(GetReadme())
-                );
-            }); 
+                GetReadme();
+            });
         </script>
     </body>
 </html>
