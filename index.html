@@ -36,7 +36,7 @@
         <div class="mdui-drawer" id="drawer">
             <ul class="mdui-list" mdui-collapse="{accordion: true}" id="dc">
 
-                <li class="mdui-list-item mdui-ripple" id="d-home" onclick="GetReadme('README.md');">
+                <li class="mdui-list-item mdui-ripple mdui-list-item-active" id="d-home" onclick="Active('README.md');">
                     <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
                     <div class="mdui-list-item-content">Home</div>
                 </li>
@@ -49,7 +49,7 @@
                 </div>
                 <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
                   <li class="mdui-list-item mdui-ripple">Acdp</li>
-                  <li class="mdui-list-item mdui-ripple" id="d-SNS" onclick="GetReadme('SNS/README.md');">Network System</li>
+                  <li class="mdui-list-item mdui-ripple" id="d-SNS" onclick="Active('SNS/README.md');">Network System</li>
                   <li class="mdui-list-item mdui-ripple">AUT</li>
                 </ul>
               </li>
@@ -82,11 +82,22 @@
                 xmlhttp.open('GET', FN, true);
                 xmlhttp.send();
             }
+            function Active(FN) {
+                var oli = document.getElementsByTagName("li");
+                for(var i=0; i<oli.length; i++){
+                    if (oli[i].id == "d-resp"){
+                        continue;
+                    }
+                    oli[i].setAttribute("class","mdui-list-item mdui-ripple");
+                };
+                GetReadme(FN);
+            }
             $(document).ready(function(){ 
                 mdui.snackbar({
                     message: 'Welcome Here',
                     position: 'right-bottom'
                 });
+                GetReadme('README.md');
             });
         </script>
     </body>
