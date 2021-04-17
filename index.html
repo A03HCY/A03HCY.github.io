@@ -28,7 +28,7 @@
                 <a href="javascript:;" class="mdui-typo-title">Start</a>
                 <div class="mdui-toolbar-spacer"></div>
                 <a href="javascript:;" class="mdui-btn mdui-ripple mdui-btn-icon mdui-hidden-xs"><i class="mdui-icon material-icons">search</i></a>
-                <a href="javascript:;" class="mdui-btn mdui-ripple mdui-btn-icon mdui-hidden-xs"><i class="mdui-icon material-icons">refresh</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-ripple mdui-btn-icon" onclick="GetReadme(NowPage)"><i class="mdui-icon material-icons">refresh</i></a>
                 <a href="javascript:;" class="mdui-btn mdui-ripple mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
             </div>
         </div>
@@ -65,7 +65,9 @@
             crossorigin="anonymous"
         ></script>
         <script>
+            var NowPage = 'README.md';
             function GetReadme(FN) {
+                NowPage = FN;
                 var xmlhttp;
                 if (window.XMLHttpRequest) {
                     xmlhttp = new XMLHttpRequest();
