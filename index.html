@@ -39,7 +39,7 @@
             crossorigin="anonymous"
         ></script>
         <script>
-            function GetReadme() {
+            function GetReadme(FN) {
                 var xmlhttp;
                 if (window.XMLHttpRequest) {
                     xmlhttp = new XMLHttpRequest();
@@ -53,7 +53,7 @@
                         );
                     }
                 }
-                xmlhttp.open('GET', "/README.md", true);
+                xmlhttp.open('GET', FN, true);
                 xmlhttp.send();
             }
             $(document).ready(function(){ 
@@ -61,7 +61,7 @@
                     message: 'Welcome Here',
                     position: 'right-bottom'
                 });
-                GetReadme();
+                GetReadme("/README.md");
             });
         </script>
     </body>
