@@ -19,10 +19,11 @@
         />
         <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     </head>
-    <body class="mdui-appbar-with-toolbar">
+    <body class="mdui-appbar-with-toolbar mdui-drawer-body-left" style="padding-top: 20px;">
+
         <div class="mdui-appbar mdui-appbar-fixed mdui-shadow-0">
             <div class="mdui-toolbar mdui-color-white">
-                <a href="javascript:;" class="mdui-btn mdui-ripple mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+                <a href="javascript:;" class="mdui-btn mdui-ripple mdui-btn-icon" mdui-drawer="{target: '#drawer'}"><i class="mdui-icon material-icons">menu</i></a>
                 <a href="javascript:;" class="mdui-typo-headline">Acdp</a>
                 <a href="javascript:;" class="mdui-typo-title">Start</a>
                 <div class="mdui-toolbar-spacer"></div>
@@ -31,7 +32,17 @@
                 <a href="javascript:;" class="mdui-btn mdui-ripple mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
             </div>
         </div>
-        <article class="mdui-typo mdui-container"></article>
+
+        <div class="mdui-drawer" id="drawer">
+            <ul class="mdui-list">
+              <li class="mdui-list-item mdui-ripple mdui-list-item-active" id="d-home">
+                <i class="mdui-icon material-icons">home</i>
+                <div class="mdui-list-item-content">Home</div>
+              </li>
+            </ul>
+        </div>
+        
+        <article class="mdui-typo mdui-container mdui-m-t-5"></article>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
