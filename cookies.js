@@ -25,7 +25,7 @@ function IsCookie(c_key){
     var arr = document.cookie.split("; ");
     for(var i=0;i<arr.length;i++){
         var temp = arr[i].split("=");
-        if(tmp[0].trim() === c_key){
+        if(temp[0].trim() === c_key){
             return true;
         }
     }
