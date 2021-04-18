@@ -160,22 +160,16 @@
                         onButtonClick: function(){
                             SetCookie("hidden", "true", 15)
                             document.getElementById("hidden").play();
-                            mdui.snackbar({
-                                message: "OK~音乐控制在右上角哦",
-                                position: 'right-bottom'
-                            });
                         }
                     });
                 } else {
+                    document.getElementById("hidden").play();
                     mdui.snackbar({
                         message: '关闭背景音乐?',
                         buttonText: 'OK',
                         onButtonClick: function(){
+                            document.getElementById("hidden").pause();
                             SetCookie("hidden", "false", 15)
-                            mdui.snackbar({
-                                message: "OK~音乐控制在右上角哦",
-                                position: 'right-bottom'
-                            });
                         }
                     });
                 }
