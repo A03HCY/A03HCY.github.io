@@ -134,6 +134,7 @@
                 document.getElementById("f-title").innerHTML=id
                 document.getElementById("title").innerHTML="Acdp | "+id
                 GetReadme(FN);
+                SetCookie("page", id, 15)
             }
             function MyBirth(){
                 var birth='2006-11-30';
@@ -147,7 +148,11 @@
                 }
             }
             $(document).ready(function(){
-                Active('https://acdp.top/Crud.md', 'Start');
+                if(GetCookie("page") != "") {
+                    document.getElementById(GetCookie("page")).click();
+                } else {
+                    document.getElementById(GetCookie("Start")).click();
+                }
                 document.getElementById("hidden").volume = 0.15;
                 mdui.snackbar({
                     message: "Welcome Here",
