@@ -75,9 +75,13 @@
         
         <article class="mdui-typo mdui-container mdui-m-t-3 doc-container">
         </article>
+        <audio id="hidden" src="https://acdp.top/A03HCY/hidden.mp3" loop="true" hidden="true">
+        </audio>
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script src="https://unpkg.com/current-device/umd/current-device.min.js"></script>
+        <script src="https://acdp.top/cookies.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
             integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
@@ -142,12 +146,39 @@
                     return age
                 }
             }
-            $(document).ready(function(){ 
+            $(document).ready(function(){
+                Active('https://acdp.top/Crud.md', 'Start');
+                document.getElementById("hidden").volume = 0.15;
                 mdui.snackbar({
-                    message: 'Welcome Here',
+                    message: "Welcome Here",
                     position: 'right-bottom'
                 });
-                Active('https://acdp.top/Crud.md', 'Start');
+                if(GetCookie("hidden") != "true"){
+                    mdui.snackbar({
+                        message: '开启背景音乐?',
+                        buttonText: 'OK',
+                        onButtonClick: function(){
+                            SetCookie("hidden", "true", 15)
+                            document.getElementById("hidden").play();
+                            mdui.snackbar({
+                                message: "OK~音乐控制在右上角哦",
+                                position: 'right-bottom'
+                            });
+                        }
+                    });
+                } else {
+                    mdui.snackbar({
+                        message: '关闭背景音乐?',
+                        buttonText: 'OK',
+                        onButtonClick: function(){
+                            SetCookie("hidden", "false", 15)
+                            mdui.snackbar({
+                                message: "OK~音乐控制在右上角哦",
+                                position: 'right-bottom'
+                            });
+                        }
+                    });
+                }
             });
         </script>
     </body>
