@@ -48,13 +48,13 @@
                         <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                     </div>
                     <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                        <li class="mdui-list-item mdui-ripple">Acdp</li>
+                        <li class="mdui-list-item mdui-ripple" onclick="Active('https://acdp.top/');">Acdp</li>
                         <li class="mdui-list-item mdui-ripple" id="d-SNS" onclick="Active('https://acdp.top/SNS/Crud.md');">Network System</li>
                         <li class="mdui-list-item mdui-ripple" id="d-AUT" onclick="Active('https://acdp.top/AUT/Crud.md');">AUT</li>
                     </ul>
                 </li>
 
-                <li class="mdui-list-item mdui-ripple" id="d-home" onclick="Active('https://acdp.top/A03HCY/Crud.md');">
+                <li class="mdui-list-item mdui-ripple" id="d-home" onclick="Active('README.md', false);">
                     <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">insert_emoticon</i>
                     <div class="mdui-list-item-content">About Me</div>
                 </li>
@@ -63,8 +63,9 @@
         </div>
         
         <article class="mdui-typo mdui-container mdui-m-t-3 doc-container">
-            <div class="mdui-text-center"><div class="mdui-spinner mdui-spinner-colorful"></div></div>
         </article>
+
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
@@ -73,8 +74,12 @@
         ></script>
         <script>
             var NowPage = 'https://acdp.top/Crud.md';
-            function GetReadme(FN) {
+            function GetReadme(FN, MD=true) {
                 NowPage = FN;
+                mdui.$('article').html(
+                    '<div class="mdui-text-center"><div class="mdui-spinner mdui-spinner-colorful"></div></div>'
+                );
+                mdui.mutation();
                 var xmlhttp;
                 if (window.XMLHttpRequest) {
                     xmlhttp = new XMLHttpRequest();
@@ -83,12 +88,14 @@
                 }
                 xmlhttp.onreadystatechange = function() {
                     if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        mdui.$('article').html(
-                            marked(xmlhttp.responseText)
-                        );
+                        if(MD == true) {
+                            mdui.$('article').html(
+                                marked(xmlhttp.responseText)
+                            );
+                        }
                     }
                 }
-                xmlhttp.open('GET', FN, true);
+                xmlhttp.open('GET', FN+"?timestamp="+new Date().getTime(), true);
                 xmlhttp.send();
             }
             function Active(FN) {
@@ -100,6 +107,17 @@
                     oli[i].setAttribute("class","mdui-list-item mdui-ripple");
                 };
                 GetReadme(FN);
+            }
+            function MyBirth(){
+                var birth='2006-11-30';
+                birth = Date.parse(birth.replace('/-/g', "/"));
+                if (birth) {
+                    var year = 1000 * 60 * 60 * 24 * 365;
+                    var now = new Date();
+                    var birthday = new Date(birth);
+                    var age = parseInt((now - birthday) / year);
+                    return age
+                }
             }
             $(document).ready(function(){ 
                 mdui.snackbar({
