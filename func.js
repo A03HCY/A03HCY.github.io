@@ -12,10 +12,10 @@ function Light() {
 }
 function StartEnvir() {
     var en = GetCookie("envir");
-    if(en == "light") {
-        Light();
-    } else{
+    if(en == "dark") {
         Dark();
+    } else{
+        Light();
     }
 }
 function ChangeL() {
