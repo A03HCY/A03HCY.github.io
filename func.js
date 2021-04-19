@@ -56,7 +56,7 @@ function HT(FN, tit) {
     xmlhttp.onreadystatechange = function() {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             mdui.$('article').html('');
-            mdui.$('article').setAttribute("class","mdui-container mdui-m-t-3 doc-container")
+            document.getElementById("art").setAttribute("class","mdui-container mdui-m-t-3 doc-container")
             mdui.$('article').html(
                 marked(xmlhttp.responseText)
             );
