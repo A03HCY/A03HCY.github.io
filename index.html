@@ -107,17 +107,9 @@
                 }
                 xmlhttp.onreadystatechange = function() {
                     if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        if(MD == true) {
-                            mdui.$('article').html(
-                                marked(xmlhttp.responseText)
-                            );
-                        } else {
-                            mdui.$('article').html('');
-                            mdui.snackbar({
-                                message: "Can't Request!",
-                                position: 'right-bottom'
-                            });
-                        }
+                        mdui.$('article').html(
+                            marked(xmlhttp.responseText)
+                        );
                     }
                 }
                 xmlhttp.open('GET', FN+"?timestamp="+new Date().getTime(), true);
