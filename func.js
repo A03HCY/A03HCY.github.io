@@ -1,13 +1,13 @@
 function Dark() {
     SetCookie("envir","dark")
     document.getElementById("sn-t").innerHTML = "Dark";
-    document.getElementById("sn").innerHTML = '<i class="mdui-icon material-icons">brightness_2</i>';
+    document.getElementById("sn").innerHTML = 'brightness_2';
     document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark")
 }
 function Light() {
     SetCookie("envir","light")
     document.getElementById("sn-t").innerHTML = "Light";
-    document.getElementById("sn").innerHTML = '<i class="mdui-icon material-icons">brightness_high</i>';
+    document.getElementById("sn").innerHTML = 'brightness_high';
     document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left")
 }
 function StartEnvir() {
