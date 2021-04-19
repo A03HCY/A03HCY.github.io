@@ -56,14 +56,7 @@ function HT(FN, tit) {
     xmlhttp.onreadystatechange = function() {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             mdui.$('article').html('');
-            if(MD == true) {
-                document.getElementById("divx").innerHTML(xmlhttp.responseText);
-            } else {
-                mdui.snackbar({
-                    message: "Can't Request!",
-                    position: 'right-bottom'
-                });
-            }
+            document.getElementById("divx").innerHTML(xmlhttp.responseText);
         }
     }
     xmlhttp.open('GET', FN+"?timestamp="+new Date().getTime(), true);
