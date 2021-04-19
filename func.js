@@ -56,7 +56,10 @@ function HT(FN, tit) {
     xmlhttp.onreadystatechange = function() {
         if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             mdui.$('article').html('');
-            document.getElementById("divx").html(xmlhttp.responseText);
+            mdui.$('article').setAttribute("class","mdui-container mdui-m-t-3 doc-container")
+            mdui.$('article').html(
+                marked(xmlhttp.responseText)
+            );
         }
     }
     xmlhttp.open('GET', FN+"?timestamp="+new Date().getTime(), true);
