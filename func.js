@@ -1,3 +1,7 @@
+function CheckEn(LN) {
+    var t = GetCookie("tenvir");
+}
+
 function Dark() {
     SetCookie("envir","dark")
     document.getElementById("sn-t").innerHTML = "Dark";
@@ -20,8 +24,20 @@ function StartEnvir() {
         Light();
     }
 }
+function TingB(LN) {
+    SetCookie("tenvir",LN);
+    ChangeL();
+}
 function ChangeL() {
     var en = GetCookie("envir");
+    var t = GetCookie();
+    if(t == "light") {
+        Light();
+        return;
+    } else if(t == "dark") {
+        Dark();
+        return;
+    }
     if(en == "light") {
         Dark();
     } else{
