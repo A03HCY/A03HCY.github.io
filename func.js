@@ -44,14 +44,28 @@ function ChangeL() {
     }
 }
 
-function ChangSong(url) {
+function ChangeSong(url) {
     document.getElementById("hidden").setAttribute("src",url);
     if(GetCookie("hidden") == "true") {
         document.getElementById("hidden").play();
     }
 }
 
-function Story(FN, id) {
+function Story(FN, id, music=null) {
+    mdui.snackbar({
+        message: 'The Last..',
+        position: 'right-bottom'
+    });
+    if(music) {
+        mdui.snackbar({
+            message: '存在背景音乐，开启?',
+            buttonText: 'OK',
+            onButtonClick: function(){
+                SetCookie("hidden", "true");
+                ChangeSong(music);
+            }
+        });
+    }
     Active(FN, id);
     Dark();
 }
