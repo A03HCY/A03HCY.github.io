@@ -1,7 +1,6 @@
 function CheckEn(LN) {
     var t = GetCookie("tenvir");
 }
-
 function Dark() {
     SetCookie("envir","dark")
     document.getElementById("sn-t").innerHTML = "Dark";
@@ -43,6 +42,18 @@ function ChangeL() {
     } else{
         Light();
     }
+}
+
+function ChangSong(url) {
+    document.getElementById("hidden").setAttribute("src",url);
+    if(GetCookie("hidden") == "true") {
+        document.getElementById("hidden").play();
+    }
+}
+
+function Story(FN, id) {
+    Active(FN, id);
+    Dark();
 }
 
 function MyBirth(){
