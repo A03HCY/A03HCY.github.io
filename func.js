@@ -2,16 +2,12 @@ function CheckEn(LN) {
     var t = GetCookie("tenvir");
 }
 function Dark() {
-    SetCookie("envir","dark")
-    document.getElementById("sn-t").innerHTML = "Dark";
-    document.getElementById("sn").innerHTML = 'brightness_2';
+    SetCookie("envir","dark");
     document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark");
     mdui.mutation();
 }
 function Light() {
-    SetCookie("envir","light")
-    document.getElementById("sn-t").innerHTML = "Light";
-    document.getElementById("sn").innerHTML = 'brightness_high';
+    SetCookie("envir","light");
     document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left");
     mdui.mutation();
 }
