@@ -5,14 +5,14 @@ function Dark() {
     SetCookie("envir","dark")
     document.getElementById("sn-t").innerHTML = "Dark";
     document.getElementById("sn").innerHTML = 'brightness_2';
-    document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark")
+    document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark");
     mdui.mutation();
 }
 function Light() {
     SetCookie("envir","light")
     document.getElementById("sn-t").innerHTML = "Light";
     document.getElementById("sn").innerHTML = 'brightness_high';
-    document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left")
+    document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left");
     mdui.mutation();
 }
 function StartEnvir() {
@@ -67,7 +67,7 @@ function Story(FN, id, music=null) {
         });
     }
     Active(FN, id);
-    Dark();
+    document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark");
 }
 
 function MyBirth(){
