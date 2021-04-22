@@ -24,12 +24,12 @@ function StartEnvir() {
 function ChangeV() {
     var v = document.getElementById("slider").value;
     document.getElementById("hidden").volume = v;
-    document.getElementById("story-m").volume = parseFloat(v) + 0.08;
+    document.getElementById("story-m").volume = parseFloat(v) + 01;
 }
 function InitM() {
     var muv = 0.13;
     document.getElementById("hidden").volume = muv;
-    document.getElementById("story-m").volume = parseFloat(muv) + 0.08;
+    document.getElementById("story-m").volume = parseFloat(muv) + 0.1;
     document.getElementById("slider").value = muv;
     mdui.updateSliders();
 }
@@ -78,7 +78,9 @@ var story = 0;
 function Story(FN, id, url) {
     Active(FN, id);
     document.getElementById("story-m").setAttribute("src",url);
-    document.getElementById("story-m").play();
+    if(GetCookie("music-od") == "true") {
+        document.getElementById("story-m").play();
+    }
     if(story == 0) {
         if(GetCookie("music-od") != "true") {
             mdui.snackbar({
