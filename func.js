@@ -43,9 +43,6 @@ function ChangeSong(url) {
     }
 }
 fuction MStart() {
-    try {
-        document.getElementById("hidden").play();
-    } catch(err) {}
 }
 fuction MStop() {
 }
