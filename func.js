@@ -37,18 +37,14 @@ function Mstart() {
     document.getElementById("hidden").play();
     document.getElementById("music-tit").innerHTML = "Stop";
     document.getElementById("music-icon").innerHTML = "pause";
-    if(GetCookie("story-m") == "true") {
-        document.getElementById("story-m").play();
-    }
+    document.getElementById("story-m").play();
 }
 function Mstop() {
     SetCookie("music-od", "false");
     document.getElementById("hidden").pause();
     document.getElementById("music-tit").innerHTML = "Play";
     document.getElementById("music-icon").innerHTML = "play_arrow";
-    if(GetCookie("story-m") == "true") {
-        document.getElementById("story-m").pause();
-    }
+    document.getElementById("story-m").pause();
 }
 function ChangeM() {
     var m = GetCookie("music-od");
@@ -74,11 +70,8 @@ function ChangeL() {
         Light();
     }
 }
-function ChangeSong(url) {
-    document.getElementById("hidden").setAttribute("src",url);
-    if(GetCookie("hidden") == "true") {
-        document.getElementById("hidden").play();
-    }
+function WhiteSong(url) {
+    document.getElementById("story-m").setAttribute("src","https://acdp.top/story/white.mp3");
 }
 var story = 0;
 function Story(FN, id, url) {
@@ -102,8 +95,6 @@ function Story(FN, id, url) {
     Active(FN, id);
     Dark();
     SetCookie("story-m", "true");
-    ChangeM();
-    ChangeM();
 }
 function MyBirth(){
     var birth='2006-11-30';
