@@ -28,6 +28,7 @@ function ChangeV() {
 function InitM() {
     var muv = 0.15;
     document.getElementById("hidden").volume = muv;
+    document.getElementById("story-m").volume = muv + 0.08;
     document.getElementById("slider").value = muv;
     mdui.updateSliders();
 }
@@ -36,12 +37,18 @@ function Mstart() {
     document.getElementById("hidden").play();
     document.getElementById("music-tit").innerHTML = "Stop";
     document.getElementById("music-icon").innerHTML = "pause";
+    if(GetCookie("story-m") == "true") {
+        document.getElementById("story-m").play();
+    }
 }
 function Mstop() {
     SetCookie("music-od", "false");
     document.getElementById("hidden").pause();
     document.getElementById("music-tit").innerHTML = "Play";
     document.getElementById("music-icon").innerHTML = "play_arrow";
+    if(GetCookie("story-m") == "true") {
+        document.getElementById("story-m").pause();
+    }
 }
 function ChangeM() {
     var m = GetCookie("music-od");
@@ -74,7 +81,7 @@ function ChangeSong(url) {
     }
 }
 var story = 0;
-function Story(FN, id) {
+function Story(FN, id, url) {
     if(story == 0) {
         if(GetCookie("music-od") != "true") {
             mdui.snackbar({
@@ -86,9 +93,15 @@ function Story(FN, id) {
             });
         }
     }
+    if(url) {
+        document.getElementById("story-m").setAttribute("src",url);
+    }
     story += 1;
     Active(FN, id);
     Dark();
+    SetCookie("story-m", "true");
+    ChangeM();
+    ChangeM();
 }
 function MyBirth(){
     var birth='2006-11-30';
