@@ -23,7 +23,7 @@ function StartEnvir() {
 function Mstart() {
     SetCookie("music-od", "true");
     document.getElementById("hidden").play();
-    document.getElementById("music-tit").innerHTML = "Playing.";
+    document.getElementById("music-tit").innerHTML = "Playing...";
 }
 function Mstop() {
     SetCookie("music-od", "false");
