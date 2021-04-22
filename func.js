@@ -28,7 +28,7 @@ function Mstart() {
 function Mstop() {
     SetCookie("music-od", "false");
     document.getElementById("hidden").pause();
-    document.getElementById("music-tit").innerHTML = "Music";
+    document.getElementById("music-tit").innerHTML = "Stop.";
 }
 function ChangeM() {
     var m = GetCookie("music-od");
