@@ -24,6 +24,7 @@ function StartEnvir() {
 function ChangeV() {
     var v = document.getElementById("slider").value;
     document.getElementById("hidden").volume = v;
+    document.getElementById("story-m").volume = v + 0.08;
 }
 function InitM() {
     var muv = 0.15;
