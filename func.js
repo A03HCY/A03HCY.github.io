@@ -24,11 +24,13 @@ function Mstart() {
     SetCookie("music-od", "true");
     document.getElementById("hidden").play();
     document.getElementById("music-tit").innerHTML = "Playing...";
+    document.getElementById("music-tit").innerHTML = "pause";
 }
 function Mstop() {
     SetCookie("music-od", "false");
     document.getElementById("hidden").pause();
     document.getElementById("music-tit").innerHTML = "Stop.";
+    document.getElementById("music-tit").innerHTML = "play_arrow";
 }
 function ChangeM() {
     var m = GetCookie("music-od");
