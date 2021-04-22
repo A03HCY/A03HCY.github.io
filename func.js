@@ -27,7 +27,7 @@ function ChangeV() {
     document.getElementById("story-m").volume = parseFloat(v) + 0.08;
 }
 function InitM() {
-    var muv = 0.15;
+    var muv = 0.13;
     document.getElementById("hidden").volume = muv;
     document.getElementById("story-m").volume = parseFloat(muv) + 0.08;
     document.getElementById("slider").value = muv;
