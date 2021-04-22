@@ -78,9 +78,14 @@
 
                 <li class="mdui-divider" id="d-bran"></li>
 
-                <li class="mdui-list-item mdui-ripple" onclick="ChangeL();">
+                <li class="mdui-list-item mdui-ripple" onclick="ChangeL();" id="d-bran">
                     <i id="envir-icon" class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-yellow"></i>
                     <div id="envir-tit" class="mdui-list-item-content"></div>
+                </li>
+                
+                <li class="mdui-list-item mdui-ripple" onclick="" id="d-bran">
+                    <i id="music-icon" class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-pink">music_note</i>
+                    <div id="music-tit" class="mdui-list-item-content"></div>
                 </li>
 
             </ul>
@@ -155,27 +160,7 @@
                     message: "Welcome Here",
                     position: 'right-bottom'
                 });
-                if(GetCookie("hidden") != "true"){
-                    mdui.snackbar({
-                        message: '开启背景音乐?',
-                        buttonText: 'OK',
-                        onButtonClick: function(){
-                            SetCookie("hidden", "true", 15)
-                            document.getElementById("hidden").play();
-                        }
-                    });
-                } else {
-                    document.getElementById("hidden").play();
-                    mdui.snackbar({
-                        message: '关闭背景音乐?',
-                        buttonText: 'OK',
-                        onButtonClick: function(){
-                            document.getElementById("hidden").pause();
-                            SetCookie("hidden", "false", 15)
-                        }
-                    });
-                }
-            });
+            }
         </script>
     </body>
 </html>
