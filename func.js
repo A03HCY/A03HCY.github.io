@@ -63,7 +63,7 @@ function Story(FN, id, music=null) {
         });
     }
     Active(FN, id);
-    document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark");
+    document.getElementById("body").setAttribute("class","mdui-loaded mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark");
 }
 
 function MyBirth(){
