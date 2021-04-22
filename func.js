@@ -20,6 +20,23 @@ function StartEnvir() {
         Light();
     }
 }
+function Mstart() {
+    SetCookie("music-od", "true")
+    document.getElementById("hidden").play();
+    document.getElementById("music-tit").innerHTML = "Playing.";
+}
+function Mstop() {
+    SetCookie("music-od", "false")
+    document.getElementById("hidden").pause();
+    document.getElementById("music-tit").innerHTML = "Music";
+}
+function ChangeM() {
+    var m = GetCookie("music-od");
+    if(m != "true") {
+        Mstart();
+    } else
+    document.getElementById("hidden").
+}
 function ChangeL() {
     var en = GetCookie("envir");
     var t = GetCookie();
