@@ -34,8 +34,9 @@ function ChangeM() {
     var m = GetCookie("music-od");
     if(m != "true") {
         Mstart();
-    } else
-    document.getElementById("hidden").
+    } else {
+        Mstop();
+    }
 }
 function ChangeL() {
     var en = GetCookie("envir");
