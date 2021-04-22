@@ -76,11 +76,7 @@ function WhiteSong(url) {
 }
 var story = 0;
 function Story(FN, id, url) {
-    if(url) {
-        document.getElementById("story-m").setAttribute("src",url);
-    } else {
-        document.getElementById("story-m").setAttribute("src","https://acdp.top/story/white.mp3");
-    }
+    document.getElementById("story-m").setAttribute("src",url);
     if(story == 0) {
         if(GetCookie("music-od") != "true") {
             mdui.snackbar({
