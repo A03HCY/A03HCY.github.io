@@ -60,11 +60,20 @@ function ChangeSong(url) {
         document.getElementById("hidden").play();
     }
 }
+var story = 0;
 function Story(FN, id) {
-    mdui.snackbar({
-        message: 'The Last..',
-        position: 'right-bottom'
-    });
+    if(story == 0) {
+        if(GetCookie("music-od") != "true") {
+            mdui.snackbar({
+                message: '打开背景音乐？',
+                buttonText: 'OK',
+                onButtonClick: function(){
+                    Mstart();
+                },
+            });
+        }
+    }
+    story += 1;
     Active(FN, id);
     Dark();
 }
