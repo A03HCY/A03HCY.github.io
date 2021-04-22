@@ -13,6 +13,7 @@ function Light() {
     mdui.mutation();
 }
 function StartEnvir() {
+    SetCookie("music-od", "false");
     var en = GetCookie("envir");
     if(en == "dark") {
         Dark();
@@ -27,13 +28,13 @@ function ChangeV() {
 function Mstart() {
     SetCookie("music-od", "true");
     document.getElementById("hidden").play();
-    document.getElementById("music-tit").innerHTML = "Playing...";
+    document.getElementById("music-tit").innerHTML = "Stop";
     document.getElementById("music-icon").innerHTML = "pause";
 }
 function Mstop() {
     SetCookie("music-od", "false");
     document.getElementById("hidden").pause();
-    document.getElementById("music-tit").innerHTML = "Stop.";
+    document.getElementById("music-tit").innerHTML = "Play";
     document.getElementById("music-icon").innerHTML = "play_arrow";
 }
 function ChangeM() {
