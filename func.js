@@ -42,8 +42,13 @@ function ChangeSong(url) {
         document.getElementById("hidden").play();
     }
 }
-fuction MStart() {}
-fuction MStop() {}
+fuction MStart() {
+    try {
+        document.getElementById("hidden").play();
+    } catch(err) {}
+}
+fuction MStop() {
+}
 function Story(FN, id, music=null) {
     mdui.snackbar({
         message: 'The Last..',
