@@ -21,7 +21,7 @@ function StartEnvir() {
     }
 }
 function ChangeV() {
-    var v = document.getElementById("slider").value;
+    var v = document.getElementById("slider").innerText;
     document.getElementById("hidden").volume = v;
 }
 function Mstart() {
