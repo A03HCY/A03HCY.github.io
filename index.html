@@ -112,6 +112,8 @@
         </article>
         <audio id="hidden" src="https://acdp.top/story/AllStory.mp3" loop="true" hidden="true">
         </audio>
+        <audio id="story-m" src="" loop="fatruelse" hidden="true">
+        </audio>
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -160,10 +162,11 @@
                         mdui.mutation();
                     }
                 };
-                document.getElementById("f-title").innerHTML=id
-                document.getElementById("title").innerHTML="Acdp | "+id
+                document.getElementById("f-title").innerHTML = id;
+                document.getElementById("title").innerHTML = "Acdp | "+id;
                 GetReadme(FN);
-                SetCookie("page", id, 15)
+                SetCookie("page", id, 15);
+                SetCookie("story-m", "false");
             }
             $(document).ready(function(){
                 StartEnvir();
