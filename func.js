@@ -20,6 +20,10 @@ function StartEnvir() {
         Light();
     }
 }
+function ChangeV() {
+    var v = document.getElementById("slider").val();
+    document.getElementById("hidden").volume = v;
+}
 function Mstart() {
     SetCookie("music-od", "true");
     document.getElementById("hidden").play();
