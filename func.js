@@ -42,10 +42,6 @@ function ChangeSong(url) {
         document.getElementById("hidden").play();
     }
 }
-fuction MStart() {
-}
-fuction MStop() {
-}
 function Story(FN, id, music=null) {
     mdui.snackbar({
         message: 'The Last..',
