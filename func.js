@@ -76,6 +76,7 @@ function WhiteSong(url) {
 }
 var story = 0;
 function Story(FN, id, url) {
+    Active(FN, id);
     document.getElementById("story-m").setAttribute("src",url);
     if(story == 0) {
         if(GetCookie("music-od") != "true") {
@@ -89,7 +90,6 @@ function Story(FN, id, url) {
         }
     }
     story += 1;
-    Active(FN, id);
     Dark();
     SetCookie("story-m", "true");
 }
