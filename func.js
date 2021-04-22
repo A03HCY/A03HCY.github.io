@@ -25,6 +25,12 @@ function ChangeV() {
     var v = document.getElementById("slider").value;
     document.getElementById("hidden").volume = v;
 }
+function InitM() {
+    var muv = 0.15;
+    document.getElementById("hidden").volume = muv;
+    document.getElementById("slider").value = muv;
+    mdui.updateSliders();
+}
 function Mstart() {
     SetCookie("music-od", "true");
     document.getElementById("hidden").play();
