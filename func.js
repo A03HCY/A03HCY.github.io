@@ -82,6 +82,11 @@ function ChangeSong(url) {
 }
 var story = 0;
 function Story(FN, id, url) {
+    if(url) {
+        document.getElementById("story-m").setAttribute("src",url);
+    } else {
+        document.getElementById("story-m").setAttribute("src","");
+    }
     if(story == 0) {
         if(GetCookie("music-od") != "true") {
             mdui.snackbar({
@@ -92,9 +97,6 @@ function Story(FN, id, url) {
                 },
             });
         }
-    }
-    if(url) {
-        document.getElementById("story-m").setAttribute("src",url);
     }
     story += 1;
     Active(FN, id);
