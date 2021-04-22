@@ -177,6 +177,10 @@
                 WhiteSong();
             }
             $(document).ready(function(){
+                mdui.snackbar({
+                    message: "Welcome Here",
+                    position: 'right-bottom'
+                });
                 StartEnvir();
                 InitM();
                 if(GetCookie("page") != "") {
@@ -184,10 +188,6 @@
                 } else {
                     document.getElementById("Start").click();
                 }
-                mdui.snackbar({
-                    message: "Welcome Here",
-                    position: 'right-bottom'
-                });
             });
         </script>
     </body>
