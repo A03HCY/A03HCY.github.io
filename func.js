@@ -4,11 +4,15 @@ function CheckEn(LN) {
 function Dark() {
     SetCookie("envir","dark");
     document.getElementById("body").setAttribute("class","mdui-loaded mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark");
+    document.getElementById("envir-icon").innerHTML = "brightness_2";
+    document.getElementById("envir-tit").innerHTML = "Dark";
     mdui.mutation();
 }
 function Light() {
     SetCookie("envir","light");
     document.getElementById("body").setAttribute("class","mdui-loaded mdui-appbar-with-toolbar mdui-drawer-body-left");
+    document.getElementById("envir-icon").innerHTML = "brightness_high";
+    document.getElementById("envir-tit").innerHTML = "Light";
     mdui.mutation();
 }
 function StartEnvir() {
@@ -63,7 +67,7 @@ function Story(FN, id, music=null) {
         });
     }
     Active(FN, id);
-    document.getElementById("body").setAttribute("class","mdui-loaded mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark");
+    Dark();
 }
 
 function MyBirth(){
