@@ -3,12 +3,12 @@ function CheckEn(LN) {
 }
 function Dark() {
     SetCookie("envir","dark");
-    document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark");
+    document.getElementById("body").setAttribute("class","mdui-loaded mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark");
     mdui.mutation();
 }
 function Light() {
     SetCookie("envir","light");
-    document.getElementById("body").setAttribute("class","mdui-appbar-with-toolbar mdui-drawer-body-left");
+    document.getElementById("body").setAttribute("class","mdui-loaded mdui-appbar-with-toolbar mdui-drawer-body-left");
     mdui.mutation();
 }
 function StartEnvir() {
