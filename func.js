@@ -1,6 +1,3 @@
-function CheckEn(LN) {
-    var t = GetCookie("tenvir");
-}
 function Dark() {
     SetCookie("envir","dark");
     document.getElementById("body").setAttribute("class","mdui-loaded mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-dark");
@@ -23,10 +20,6 @@ function StartEnvir() {
         Light();
     }
 }
-function TingB(LN) {
-    SetCookie("tenvir",LN);
-    ChangeL();
-}
 function ChangeL() {
     var en = GetCookie("envir");
     var t = GetCookie();
@@ -43,14 +36,14 @@ function ChangeL() {
         Light();
     }
 }
-
 function ChangeSong(url) {
     document.getElementById("hidden").setAttribute("src",url);
     if(GetCookie("hidden") == "true") {
         document.getElementById("hidden").play();
     }
 }
-
+fuction MStart() {}
+fuction MStop() {}
 function Story(FN, id, music=null) {
     mdui.snackbar({
         message: 'The Last..',
@@ -69,7 +62,6 @@ function Story(FN, id, music=null) {
     Active(FN, id);
     Dark();
 }
-
 function MyBirth(){
     var birth='2006-11-30';
     birth = Date.parse(birth.replace('/-/g', "/"));
@@ -81,7 +73,6 @@ function MyBirth(){
         return age
     }
 }
-
 function HT(FN, tit) {
     var oli = document.getElementsByTagName("li");
     for(var i=0; i<oli.length; i++){
