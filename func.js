@@ -28,11 +28,11 @@ function ChangeV() {
     document.getElementById("story-m").volume = parseFloat(v) + parseFloat(s);
 }
 function InitM() {
-    var muv = 0.13;
+    var muv = 0.10;
     document.getElementById("hidden").volume = muv;
-    document.getElementById("story-m").volume = parseFloat(muv) + 0.1;
+    document.getElementById("story-m").volume = parseFloat(muv) + 0.12;
     document.getElementById("slider").value = muv;
-    document.getElementById("story-slider").value = 0.1;
+    document.getElementById("story-slider").value = 0.12;
     mdui.updateSliders();
 }
 function Mstart() {
