@@ -149,7 +149,6 @@
                 SetCookie("page", id, 15)
             }
             $(document).ready(function(){
-                StartEnvir();
                 if(GetCookie("page") != "") {
                     document.getElementById(GetCookie("page")).click();
                 } else {
@@ -160,6 +159,7 @@
                     message: "Welcome Here",
                     position: 'right-bottom'
                 });
+                StartEnvir();
             });
         </script>
     </body>
