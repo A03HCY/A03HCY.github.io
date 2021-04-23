@@ -12,7 +12,7 @@ function Light() {
     document.getElementById("envir-tit").innerHTML = "Light";
     mdui.mutation();
 }
-function StartEnvir() {
+function InitEnvir() {
     SetCookie("music-od", "false");
     var en = GetCookie("envir");
     if(en == "dark") {
@@ -73,13 +73,15 @@ function ChangeL() {
         Light();
     }
 }
-function WhiteSong(url) {
+function WhiteSong() {
     document.getElementById("story-m").setAttribute("src","https://acdp.top/story/white.mp3");
 }
 var story = 0;
 function Story(FN, id, url) {
     Active(FN, id);
-    document.getElementById("story-m").setAttribute("src",url);
+    if(url != document.getElementById("story-m").getAttribute("src")) {
+        document.getElementById("story-m").setAttribute("src",url);
+    }
     if(GetCookie("music-od") == "true") {
         document.getElementById("story-m").play();
     }
@@ -108,6 +110,15 @@ function MyBirth(){
         var age = parseInt((now - birthday) / year);
         return age
     }
+}
+function Bran(mode, name) {
+    var text = "";
+    if(mode == true) {
+        text = "mdui-collapse-item";
+    } else {
+        text = "mdui-collapse-item mdui-hidden";
+    }
+    document.getElementsByName(name).setAttribute('class',text);
 }
 function HT(FN, tit) {
     var oli = document.getElementsByTagName("li");
