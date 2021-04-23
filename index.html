@@ -41,7 +41,7 @@
                     <div class="mdui-list-item-content">Home</div>
                 </li>
 
-                <li class="mdui-collapse-item" id="d-bran">
+                <li class="mdui-collapse-item" id="d-bran" name="pro-bran">
                     <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                         <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">layers</i>
                         <div class="mdui-list-item-content">Projects</div>
@@ -54,7 +54,7 @@
                     </ul>
                 </li>
 
-                <li class="mdui-collapse-item" id="d-bran">
+                <li class="mdui-collapse-item" id="d-bran" name="story-bran">
                     <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                         <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">book</i>
                         <div class="mdui-list-item-content">Story</div>
@@ -181,7 +181,7 @@
                     message: "Welcome Here",
                     position: 'right-bottom'
                 });
-                StartEnvir();
+                InitEnvir();
                 InitM();
                 if(GetCookie("page") != "") {
                     document.getElementById(GetCookie("page")).click();
