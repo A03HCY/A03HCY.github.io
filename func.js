@@ -83,11 +83,11 @@ function Story(FN, id, url=null) {
     if(url != null) {
         if(url != document.getElementById("story-m").getAttribute("src")) {
             document.getElementById("story-m").setAttribute("src",url);
-            if(GetCookie("music-od") == "true") {
-                document.getElementById("story-m").play();
-                document.getElementById("story-m").load(); 
-            }
         }
+    }
+    if(GetCookie("music-od") == "true") {
+        document.getElementById("story-m").play();
+        document.getElementById("story-m").load(); 
     }
     if(story == 0) {
         if(GetCookie("music-od") != "true") {
