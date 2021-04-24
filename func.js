@@ -74,7 +74,7 @@ function ChangeL() {
     }
 }
 function WhiteSong() {
-    document.getElementById("story-m").setAttribute("src","https://acdp.top/story/white.mp3");
+    var ms = document.getElementById("story-m");
 }
 var story = 0;
 function Story(FN, id, url) {
