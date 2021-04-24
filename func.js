@@ -41,6 +41,7 @@ function Mstart() {
     document.getElementById("music-tit").innerHTML = "Stop";
     document.getElementById("music-icon").innerHTML = "pause";
     document.getElementById("story-m").play();
+    document.getElementById("story-m").load(); 
 }
 function Mstop() {
     SetCookie("music-od", "false");
