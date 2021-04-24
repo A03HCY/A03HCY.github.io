@@ -77,14 +77,16 @@ function WhiteSong() {
     var ms = document.getElementById("story-m");
 }
 var story = 0;
-function Story(FN, id, url) {
+function Story(FN, id, url=null) {
     Active(FN, id);
-    if(url != document.getElementById("story-m").getAttribute("src")) {
-        document.getElementById("story-m").setAttribute("src",url);
-    }
-    if(GetCookie("music-od") == "true") {
-        document.getElementById("story-m").play();
-        document.getElementById("story-m").load(); 
+    if(url != null) {
+        if(url != document.getElementById("story-m").getAttribute("src")) {
+            document.getElementById("story-m").setAttribute("src",url);
+            if(GetCookie("music-od") == "true") {
+                document.getElementById("story-m").play();
+                document.getElementById("story-m").load(); 
+            }
+        }
     }
     if(story == 0) {
         if(GetCookie("music-od") != "true") {
