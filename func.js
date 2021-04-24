@@ -85,7 +85,6 @@ function Story(FN, id, url=null) {
             document.getElementById("story-m").setAttribute("src",url);
             if(GetCookie("music-od") == "true") {
                 document.getElementById("story-m").play();
-                document.getElementById("story-m").load(); 
             }
         }
     }
