@@ -13,6 +13,7 @@
         </style>
     </head>
     <body>
+        <div id="io"></div>
         <script src="https://acdp.top/func.js"></script>
         <script src="https://acdp.top/cookies.js"></script>
         <script>
@@ -22,6 +23,7 @@
                 return s && s.trim();
             })
             document.getElementById("title").innerText = url[0];
+            document.getElementById("io").innerText = url[0];
             SetCookie("jump", url);
         </script>
     </body>
