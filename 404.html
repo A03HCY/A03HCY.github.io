@@ -24,7 +24,7 @@
             document.getElementById("title").innerText = url[0];
             document.getElementById("io").innerText = url;
             var stop = false;
-            var xmlhttp;
+            var xmlhttp, result;
             if (window.XMLHttpRequest) {
                 xmlhttp = new XMLHttpRequest();
             } else {
@@ -33,7 +33,7 @@
             xmlhttp.onreadystatechange = function() {
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var project = xmlhttp.responseText.split(",");
-                    var result = project.findIndex(ele => ele === url[0])
+                    result = project.findIndex(ele => ele === url[0])
                     stop = true;
                 }
             }
