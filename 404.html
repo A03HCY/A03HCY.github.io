@@ -19,7 +19,7 @@
             var url = window.location.pathname;
             url = url.split("/").slice(1);
             document.getElementById("title").innerText = url[0];
-            if (url[-1] == ""){url = url.slice(0, -1);}
+            if (url[url.length-1] == ""){url = url.slice(0, -1);}
             SetCookie("jump", url);
         </script>
     </body>
