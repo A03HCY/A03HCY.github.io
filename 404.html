@@ -34,7 +34,9 @@
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var project = xmlhttp.responseText.split(",");
                     result = project.findIndex(ele => ele === url[0])
-                    stop = true;
+                    if (result == -1){
+                        stop = true;
+                    }
                 }
             }
             xmlhttp.open('GET', "/deep/project.cot", true);
