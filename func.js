@@ -1,3 +1,5 @@
+var ColorTheme = matchMedia('(prefers-color-scheme: dark)').matches;
+
 function DeviceIden() {
 	var sUserAgent = navigator.userAgent.toLowerCase();
 	var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
