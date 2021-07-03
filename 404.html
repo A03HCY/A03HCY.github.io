@@ -18,13 +18,10 @@
         <script>
             var url = window.location.pathname;
             url = url.split("/").slice(1);
+            var url = url.filter(function (s) {
+                return s && s.trim();
+            })
             document.getElementById("title").innerText = url[0];
-            var stop = url.length;
-            for(var i=0; i<stop; i++){
-                if (url[url.length-1] == ""){
-                    url = url.slice(0, -1);
-                }
-            }
             SetCookie("jump", url);
         </script>
     </body>
