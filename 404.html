@@ -19,7 +19,8 @@
             var url = window.location.pathname;
             url = url.split("/").slice(1);
             document.getElementById("title").innerText = url[0];
-            for(var i=0; i<url.length; i++){
+            var stop = url.length;
+            for(var i=0; i<stop; i++){
                 if (url[url.length-1] == ""){
                     url = url.slice(0, -1);
                 }
