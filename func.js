@@ -13,4 +13,18 @@ function DeviceIden() {
 	} else {
 		return "computer";
 	}
-};
+}
+
+function Active(id) {
+    var oli = document.getElementsByTagName("li");
+    for(var i=0; i<oli.length; i++){
+        if (oli[i].id == "d-bran"){
+            continue;
+        }
+        oli[i].setAttribute("class","mdui-list-item mdui-ripple");
+        if (oli[i].id == id){
+            oli[i].setAttribute("class","mdui-list-item mdui-ripple mdui-list-item-active");
+            mdui.mutation();
+        }
+    };
+}
