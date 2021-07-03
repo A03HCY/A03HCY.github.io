@@ -36,7 +36,7 @@
         <div class="mdui-drawer" id="drawer">
             <ul class="mdui-list" mdui-collapse="{accordion: true}" id="dc">
 
-                <li class="mdui-list-item mdui-ripple mdui-list-item-active" id="Start" onclick="Active('https://acdp.top/Crud.md', id);">
+                <li class="mdui-list-item mdui-ripple mdui-list-item-active" id="Start" onclick="ActiveMenu(id);">
                     <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
                     <div class="mdui-list-item-content">Home</div>
                 </li>
@@ -48,9 +48,9 @@
                         <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                     </div>
                     <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                        <li class="mdui-list-item mdui-ripple" id="Repository" onclick="Active('https://acdp.top/', id);">Acdp</li>
-                        <li class="mdui-list-item mdui-ripple" id="SNS" onclick="Active('https://acdp.top/SNS/Crud.md', id);">Network System</li>
-                        <li class="mdui-list-item mdui-ripple" id="AUT" onclick="Active('https://acdp.top/AUT/Crud.md', id);">AUT</li>
+                        <li class="mdui-list-item mdui-ripple" id="Repository" onclick="ActiveMenu(id);">Acdp</li>
+                        <li class="mdui-list-item mdui-ripple" id="SNS" onclick="ActiveMenu(id);">Network System</li>
+                        <li class="mdui-list-item mdui-ripple" id="AUT" onclick="ActiveMenu(id);">AUT</li>
                     </ul>
                 </li>
 
@@ -73,7 +73,7 @@
                 </li>
                 -->
 
-                <li class="mdui-list-item mdui-ripple" id="About" onclick="Active('https://acdp.top/A03HCY/Crud.md', id, false);">
+                <li class="mdui-list-item mdui-ripple" id="About" onclick="ActiveMenu(id);">
                     <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">insert_emoticon</i>
                     <div class="mdui-list-item-content">About Me</div>
                 </li>
@@ -90,10 +90,6 @@
         
         <article id="art" class="mdui-typo mdui-container mdui-m-b-5 mdui-m-t-3 doc-container">
         </article>
-        <audio id="hidden" src="http://hopkins.acdp.top:5212/api/v3/file/get/6/AllStory.mp3?sign=kGKuPwU_YsgfTVIjzqPjWf6Z_DD89ptvTYEIZgzPiy8%3D%3A0" loop="true" hidden="true">
-        </audio>
-        <audio id="story-m" src="http://hopkins.acdp.top:5212/api/v3/file/get/11/white.mp3?sign=oLl_yAbz3q0XZgPwq0amgl-f3udqKUY8QgH1sLe19sA%3D%3A0" loop="true" hidden="true">
-        </audio>
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
