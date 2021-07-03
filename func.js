@@ -15,7 +15,7 @@ function DeviceIden() {
 	}
 }
 
-function Active(id) {
+function ActiveMenu(id) {
     var oli = document.getElementsByTagName("li");
     for(var i=0; i<oli.length; i++){
         if (oli[i].id == "d-bran"){
