@@ -23,6 +23,21 @@
             })
             document.getElementById("title").innerText = url[0];
             document.getElementById("io").innerText = url;
+            var stop = false;
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                xmlhttp = new ActiveXObject('Microsoft.XMLHttp');
+            }
+            xmlhttp.onreadystatechange = function() {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var project = xmlhttp.responseText.split(",");
+                    stop = true;
+                }
+            }
+            xmlhttp.open('GET', "/deep/project.cot", true);
+            xmlhttp.send();
             SetCookie("jump", url);
         </script>
     </body>
