@@ -90,6 +90,10 @@
         
         <article id="art" class="mdui-typo mdui-container mdui-m-b-5 mdui-m-t-3 doc-container">
         </article>
+        <audio id="hidden" src="http://hopkins.acdp.top:5212/api/v3/file/get/6/AllStory.mp3?sign=kGKuPwU_YsgfTVIjzqPjWf6Z_DD89ptvTYEIZgzPiy8%3D%3A0" loop="true" hidden="true">
+        </audio>
+        <audio id="story-m" src="http://hopkins.acdp.top:5212/api/v3/file/get/11/white.mp3?sign=oLl_yAbz3q0XZgPwq0amgl-f3udqKUY8QgH1sLe19sA%3D%3A0" loop="true" hidden="true">
+        </audio>
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -102,6 +106,7 @@
             crossorigin="anonymous"
         ></script>
         <script>
+            var NowPage = 'https://acdp.top/Crud.md';
             function GetReadme(FN) {
                 NowPage = FN;
                 document.getElementById("art").setAttribute("class","mdui-typo mdui-container mdui-m-b-5 mdui-m-t-3 doc-container")
@@ -125,11 +130,35 @@
                 xmlhttp.open('GET', FN+"?timestamp="+new Date().getTime(), true);
                 xmlhttp.send();
             }
+            function Active(FN, id) {
+                var oli = document.getElementsByTagName("li");
+                for(var i=0; i<oli.length; i++){
+                    if (oli[i].id == "d-bran"){
+                        continue;
+                    }
+                    oli[i].setAttribute("class","mdui-list-item mdui-ripple");
+                    if (oli[i].id == id){
+                        oli[i].setAttribute("class","mdui-list-item mdui-ripple mdui-list-item-active");
+                        mdui.mutation();
+                    }
+                };
+                document.getElementById("f-title").innerHTML = id;
+                document.getElementById("title").innerHTML = "Acdp | "+id;
+                GetReadme(FN);
+                SetCookie("page", id);
+            }
             $(document).ready(function(){
                 mdui.snackbar({
                     message: "Welcome Here",
                     position: 'right-bottom'
                 });
+                InitEnvir();
+                InitM();
+                if(GetCookie("page") != "") {
+                    document.getElementById(GetCookie("page")).click();
+                } else {
+                    document.getElementById("Start").click();
+                }
             });
         </script>
     </body>
