@@ -1,4 +1,9 @@
 var ColorTheme = matchMedia('(prefers-color-scheme: dark)').matches;
+var NowLocation = window.location.pathname;
+    NowLocation = NowLocation.split("/").slice(1);
+    NowLocation = NowLocation.filter(function (s) {
+        return s && s.trim();
+    })
 
 function DeviceIden() {
 	var sUserAgent = navigator.userAgent.toLowerCase();
