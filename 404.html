@@ -18,7 +18,7 @@
         <script>
             var url = window.location.pathname;
             url = url.split("/").slice(1);
-            if (url[-1] == ""){url = url.slice(-1);}
+            if (url[-1] == ""){url = url.slice(0, -1);}
             SetCookie("jump", url);
         </script>
     </body>
