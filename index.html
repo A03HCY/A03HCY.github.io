@@ -54,6 +54,7 @@
                     </ul>
                 </li>
 
+                <!--
                 <li class="mdui-collapse-item" id="d-bran" name="story-bran">
                     <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                         <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">book</i>
@@ -70,6 +71,7 @@
                         <li class="mdui-list-item mdui-ripple" id="L's" onclick="Story('http://acdp.top/story/L.md', id, 'http://hopkins.acdp.top:5212/api/v3/file/get/11/white.mp3?sign=oLl_yAbz3q0XZgPwq0amgl-f3udqKUY8QgH1sLe19sA%3D%3A0');">L?</li>
                     </ul>
                 </li>
+                -->
 
                 <li class="mdui-list-item mdui-ripple" id="About" onclick="Active('https://acdp.top/A03HCY/Crud.md', id, false);">
                     <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">insert_emoticon</i>
@@ -82,46 +84,12 @@
                     <i id="envir-icon" class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-yellow">brightness_high</i>
                     <div id="envir-tit" class="mdui-list-item-content">Light</div>
                 </li>
-                
-                <li class="mdui-collapse-item" id="d-bran">
-                    <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-pink">queue_music</i>
-                        <div class="mdui-list-item-content">Music</div>
-                        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-                    </div>
-                    <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                        <li class="mdui-list-item mdui-ripple" onclick="ChangeM();" id="d-bran">
-                            <i id="music-icon" class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-pink">play_arrow</i>
-                            <div id="music-tit" class="mdui-list-item-content">Music</div>
-                        </li>
-                        <li class="mdui-list-item mdui-ripple">
-                            <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-pink">volume_up</i>
-                            <div class="mdui-list-item-content">
-                                <label onchange="ChangeV();" class="mdui-slider">
-                                    <input id="slider" type="range" step="0.01" min="0" max="0.65"/>
-                                </label>
-                            </div>
-                        </li>
-                        <li class="mdui-list-item mdui-ripple">
-                            <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-pink">add</i>
-                            <div class="mdui-list-item-content">
-                                <label onchange="ChangeV();" class="mdui-slider">
-                                    <input id="story-slider" type="range" step="0.01" min="0.05" max="0.25"/>
-                                </label>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
 
             </ul>
         </div>
         
         <article id="art" class="mdui-typo mdui-container mdui-m-b-5 mdui-m-t-3 doc-container">
         </article>
-        <audio id="hidden" src="http://hopkins.acdp.top:5212/api/v3/file/get/6/AllStory.mp3?sign=kGKuPwU_YsgfTVIjzqPjWf6Z_DD89ptvTYEIZgzPiy8%3D%3A0" loop="true" hidden="true">
-        </audio>
-        <audio id="story-m" src="http://hopkins.acdp.top:5212/api/v3/file/get/11/white.mp3?sign=oLl_yAbz3q0XZgPwq0amgl-f3udqKUY8QgH1sLe19sA%3D%3A0" loop="true" hidden="true">
-        </audio>
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -134,7 +102,6 @@
             crossorigin="anonymous"
         ></script>
         <script>
-            var NowPage = 'https://acdp.top/Crud.md';
             function GetReadme(FN) {
                 NowPage = FN;
                 document.getElementById("art").setAttribute("class","mdui-typo mdui-container mdui-m-b-5 mdui-m-t-3 doc-container")
@@ -158,35 +125,11 @@
                 xmlhttp.open('GET', FN+"?timestamp="+new Date().getTime(), true);
                 xmlhttp.send();
             }
-            function Active(FN, id) {
-                var oli = document.getElementsByTagName("li");
-                for(var i=0; i<oli.length; i++){
-                    if (oli[i].id == "d-bran"){
-                        continue;
-                    }
-                    oli[i].setAttribute("class","mdui-list-item mdui-ripple");
-                    if (oli[i].id == id){
-                        oli[i].setAttribute("class","mdui-list-item mdui-ripple mdui-list-item-active");
-                        mdui.mutation();
-                    }
-                };
-                document.getElementById("f-title").innerHTML = id;
-                document.getElementById("title").innerHTML = "Acdp | "+id;
-                GetReadme(FN);
-                SetCookie("page", id);
-            }
             $(document).ready(function(){
                 mdui.snackbar({
                     message: "Welcome Here",
                     position: 'right-bottom'
                 });
-                InitEnvir();
-                InitM();
-                if(GetCookie("page") != "") {
-                    document.getElementById(GetCookie("page")).click();
-                } else {
-                    document.getElementById("Start").click();
-                }
             });
         </script>
     </body>
