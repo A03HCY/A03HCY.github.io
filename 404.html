@@ -33,6 +33,7 @@
             xmlhttp.onreadystatechange = function() {
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var project = xmlhttp.responseText.split(",");
+                    var result = project.findIndex(ele => ele === url[0])
                     stop = true;
                 }
             }
