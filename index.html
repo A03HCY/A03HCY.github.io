@@ -101,6 +101,7 @@
             crossorigin="anonymous"
         ></script>
         <script>
+            var jump;
             function GetReadme(FN) {
                 NowPage = FN;
                 document.getElementById("art").setAttribute("class","mdui-typo mdui-container mdui-m-b-5 mdui-m-t-3 doc-container")
@@ -126,6 +127,8 @@
             }
             
             $(document).ready(function(){
+                jump = GetCookie("jump");
+                DeleteCookie("jump");
                 mdui.snackbar({
                     message: "Welcome Here",
                     position: 'right-bottom'
