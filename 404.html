@@ -41,7 +41,12 @@
             }
             xmlhttp.open('GET', "/deep/project.cot", true);
             xmlhttp.send();
-            SetCookie("jump", url);
+            if (stop == false){
+                SetCookie("jump", url);
+                window.location.href="/";
+            } else [
+                DeleteCookie("jump")
+            ]
         </script>
     </body>
 </html>
