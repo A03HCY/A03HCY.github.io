@@ -17,7 +17,9 @@
         <script src="https://acdp.top/cookies.js"></script>
         <script>
             var url = window.location.pathname;
-            SetCookie("jump", url.split("/").slice(1));
+            url = url.split("/").slice(1);
+            if (url[-1] == ""){url = url.slice(-1);}
+            SetCookie("jump", url);
         </script>
     </body>
 </html>
