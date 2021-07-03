@@ -106,7 +106,6 @@
             crossorigin="anonymous"
         ></script>
         <script>
-            var NowPage = 'https://acdp.top/Crud.md';
             function GetReadme(FN) {
                 NowPage = FN;
                 document.getElementById("art").setAttribute("class","mdui-typo mdui-container mdui-m-b-5 mdui-m-t-3 doc-container")
@@ -130,23 +129,7 @@
                 xmlhttp.open('GET', FN+"?timestamp="+new Date().getTime(), true);
                 xmlhttp.send();
             }
-            function Active(FN, id) {
-                var oli = document.getElementsByTagName("li");
-                for(var i=0; i<oli.length; i++){
-                    if (oli[i].id == "d-bran"){
-                        continue;
-                    }
-                    oli[i].setAttribute("class","mdui-list-item mdui-ripple");
-                    if (oli[i].id == id){
-                        oli[i].setAttribute("class","mdui-list-item mdui-ripple mdui-list-item-active");
-                        mdui.mutation();
-                    }
-                };
-                document.getElementById("f-title").innerHTML = id;
-                document.getElementById("title").innerHTML = "Acdp | "+id;
-                GetReadme(FN);
-                SetCookie("page", id);
-            }
+            
             $(document).ready(function(){
                 mdui.snackbar({
                     message: "Welcome Here",
