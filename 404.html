@@ -23,7 +23,6 @@
             })
             document.getElementById("title").innerText = url[0];
             document.getElementById("io").innerText = url;
-            var stop = false;
             var xmlhttp, result;
             if (window.XMLHttpRequest) {
                 xmlhttp = new XMLHttpRequest();
@@ -34,19 +33,17 @@
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var project = xmlhttp.responseText.split(",");
                     result = project.findIndex(ele => ele === url[0])
-                    if (result == -1){
-                        stop = true;
+                    if (result != -1){
+                        SetCookie("jump", url);
+                        window.location.href="/";
+                    } else {
+                        DeleteCookie("jump")
                     }
                 }
             }
             xmlhttp.open('GET', "/deep/project.cot", true);
             xmlhttp.send();
-            if (stop == false){
-                SetCookie("jump", url);
-                window.location.href="/";
-            } else [
-                DeleteCookie("jump")
-            ]
+            
         </script>
     </body>
 </html>
