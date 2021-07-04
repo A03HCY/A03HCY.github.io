@@ -1,0 +1,187 @@
+<html><head><style data-merge-styles="true"></style>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="UTF-8">
+    <style>
+        .is {
+            margin: 0;
+            overflow: hidden;
+            font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+            font-size: 75%;
+        }
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .fade-in {
+            animation: fade-in 200ms forwards ease-in;
+            opacity: 0;
+        }
+        @keyframes slide-in {
+            from {
+                transform: translateX(var(--slide-in-length, 40px));
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        .slide-in {
+            animation: slide-in 200ms forwards ease;
+            transform: translateX(30px);
+        }
+        .background {
+            animation-delay: 275ms;
+            height: 100px;
+            width: 100%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+        .background>span {
+            position: absolute;
+        }
+        @keyframes blue-circle-animation-x {
+            50% {
+                animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transform: translateX(44px);
+            }
+        }
+        .blue-circle-container {
+            animation: blue-circle-animation-x 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            left: calc(13% - 50px);
+            top: calc(18% - 26px);
+        }
+        @keyframes blue-circle-animation-y {
+            50% {
+                animation-timing-function: cubic-bezier(0.55, 0, 0.2, 1);
+                transform: translateY(17px);
+            }
+        }
+        .blue-circle-container::after {
+            animation: blue-circle-animation-y 9s cubic-bezier(0.25, 0, 0.2, 1) infinite;
+            background-color: rgb(26, 115, 232);
+            content: ' ';
+            height: 43px;
+            position: absolute;
+            width: 43px;
+            border-radius: 50%;
+        }
+        @keyframes green-rectangle-animation {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .green-rectangle {
+            --green-rectangle: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNzEiIGhlaWdodD0iMzcxIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik03LjYxIDE2Ni44OTVMMTY2Ljg5NiA3LjYxMWMxMC4xNDgtMTAuMTQ4IDI2LjYtMTAuMTQ4IDM2Ljc0OCAwbDE1OS4yOTMgMTU5LjI5MmMxMC4xNDcgMTAuMTQ4IDEwLjE0NyAyNi42IDAgMzYuNzQ4TDIwMy42NSAzNjIuOTM2Yy0xMC4xNDcgMTAuMTQ3LTI2LjYgMTAuMTQ3LTM2Ljc0OCAwTDcuNjExIDIwMy42NDNjLTEwLjE0OC0xMC4xNDctMTAuMTQ4LTI2LjYgMC0zNi43NDh6Ii8+PC9zdmc+Cg==');
+            -webkit-mask: var(--green-rectangle) no-repeat bottom right;
+            mask: var(--green-rectangle) no-repeat bottom right;
+            animation: green-rectangle-animation 40s infinite linear;
+            background-color: rgb(49, 167, 83);
+            bottom: 8%;
+            content: ' ';
+            height: 371px;
+            right: -255px;
+            width: 371px;
+        }
+        .grey-oval {
+            background-color: rgb(241, 243, 244);
+            bottom: calc(8% + 24px);
+            height: 100px;
+            mix-blend-mode: multiply;
+            right: 48px;
+            width: 100px;
+            border-radius: 50%;
+        }
+        @keyframes grey-rounded-rectangle-animation {
+            65% {
+                animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transform: translateY(-48px) rotate(-75deg);
+            }
+        }
+        .grey-rounded-rectangle {
+            --grey-rounded-rectangle: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMzIiIGhlaWdodD0iMTMyIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik04MS42MDMgMTRsMzYuMzk2IDM2LjM5N2MxOC42NjggMTguNjY4IDE4LjY2OCA0OC45MzUgMCA2Ny42MDItMTguNjY3IDE4LjY2OC00OC45MzQgMTguNjY4LTY3LjYwMiAwTDE0LjAwMSA4MS42MDNDLTQuNjY3IDYyLjkzNS00LjY2NyAzMi42NjggMTQgMTQgMzIuNjY4LTQuNjY3IDYyLjkzNS00LjY2NyA4MS42MDMgMTR6Ii8+PC9zdmc+Cg==');
+            -webkit-mask: var(--grey-rounded-rectangle) no-repeat top left;
+            mask: var(--grey-rounded-rectangle) no-repeat top left;
+            animation: grey-rounded-rectangle-animation 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            background-color: rgb(241, 243, 244);
+            height: 132px;
+            left: -42px;
+            top: 45%;
+            width: 132px;
+        }
+        @keyframes red-triangle-animation {
+            50% {
+                animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transform: translateY(25px) rotate(-53deg);
+            }
+        }
+        .red-triangle {
+            --red-triangle: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NSIgaGVpZ2h0PSI3NCI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNjQuNTQzIDcuMjkzbC0uMTc5IDYwLjY0MWMtLjIwMiAzLjQwNy0zLjA5MyA2LjAwMy02LjQ1OCA1Ljc5OGE2LjA1IDYuMDUgMCAwIDEtMi42ODYtLjgxN0wzLjYwNyA0Mi43NTFjLTIuOTItMS43MDYtMy45Mi01LjQ4NS0yLjIzNC04LjQ0YTYuMTQ5IDYuMTQ5IDAgMCAxIDEuOTIzLTIuMDY3bDUxLjc5LTMwLjQ3N2MyLjgxNC0xLjg4IDYuNi0xLjA5NiA4LjQ1OCAxLjc1MWE2LjIzNiA2LjIzNiAwIDAgMSAuOTk5IDMuNzc1eiIvPjwvc3ZnPgo=');
+            -webkit-mask: var(--red-triangle) no-repeat bottom left;
+            mask: var(--red-triangle) no-repeat bottom left;
+            animation: red-triangle-animation 9.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            background-color: rgb(233, 66, 53);
+            bottom: 15%;
+            height: 74px;
+            left: 12%;
+            width: 65px;
+        }
+        .yellow-dots {
+            --yellow-dots: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzYiIGhlaWdodD0iNTciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIGN4PSIxNCIgY3k9IjEzIiByPSIyIi8+PGNpcmNsZSBjeD0iMTQiIGN5PSIyIiByPSIyIi8+PGNpcmNsZSBjeD0iMTQiIGN5PSIyMyIgcj0iMiIvPjxjaXJjbGUgY3g9IjE0IiBjeT0iMzQiIHI9IjIiLz48Y2lyY2xlIGN4PSIxNCIgY3k9IjQ1IiByPSIyIi8+PGNpcmNsZSBjeD0iMTQiIGN5PSI1NSIgcj0iMiIvPjxjaXJjbGUgY3g9IjIiIGN5PSIxMyIgcj0iMiIvPjxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIyIi8+PGNpcmNsZSBjeD0iMiIgY3k9IjIzIiByPSIyIi8+PGNpcmNsZSBjeD0iMiIgY3k9IjM0IiByPSIyIi8+PGNpcmNsZSBjeD0iMiIgY3k9IjQ1IiByPSIyIi8+PGNpcmNsZSBjeD0iMiIgY3k9IjU1IiByPSIyIi8+PGNpcmNsZSBjeD0iMjYiIGN5PSIxMyIgcj0iMiIvPjxjaXJjbGUgY3g9IjI2IiBjeT0iMiIgcj0iMiIvPjxjaXJjbGUgY3g9IjI2IiBjeT0iMjMiIHI9IjIiLz48Y2lyY2xlIGN4PSIyNiIgY3k9IjM0IiByPSIyIi8+PGNpcmNsZSBjeD0iMjYiIGN5PSI0NSIgcj0iMiIvPjxjaXJjbGUgY3g9IjI2IiBjeT0iNTUiIHI9IjIiLz48Y2lyY2xlIGN4PSIzOCIgY3k9IjEzIiByPSIyIi8+PGNpcmNsZSBjeD0iMzgiIGN5PSIyIiByPSIyIi8+PGNpcmNsZSBjeD0iMzgiIGN5PSIyMyIgcj0iMiIvPjxjaXJjbGUgY3g9IjM4IiBjeT0iMzQiIHI9IjIiLz48Y2lyY2xlIGN4PSIzOCIgY3k9IjQ1IiByPSIyIi8+PGNpcmNsZSBjeD0iMzgiIGN5PSI1NSIgcj0iMiIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iMTMiIHI9IjIiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjIiIHI9IjIiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjIzIiByPSIyIi8+PGNpcmNsZSBjeD0iNTAiIGN5PSIzNCIgcj0iMiIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iNDUiIHI9IjIiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjU1IiByPSIyIi8+PGNpcmNsZSBjeD0iNjIiIGN5PSIxMyIgcj0iMiIvPjxjaXJjbGUgY3g9IjYyIiBjeT0iMiIgcj0iMiIvPjxjaXJjbGUgY3g9IjYyIiBjeT0iMjMiIHI9IjIiLz48Y2lyY2xlIGN4PSI2MiIgY3k9IjM0IiByPSIyIi8+PGNpcmNsZSBjeD0iNjIiIGN5PSI0NSIgcj0iMiIvPjxjaXJjbGUgY3g9IjYyIiBjeT0iNTUiIHI9IjIiLz48Y2lyY2xlIGN4PSI3NCIgY3k9IjEzIiByPSIyIi8+PGNpcmNsZSBjeD0iNzQiIGN5PSIyIiByPSIyIi8+PGNpcmNsZSBjeD0iNzQiIGN5PSIyMyIgcj0iMiIvPjxjaXJjbGUgY3g9Ijc0IiBjeT0iMzQiIHI9IjIiLz48Y2lyY2xlIGN4PSI3NCIgY3k9IjQ1IiByPSIyIi8+PGNpcmNsZSBjeD0iNzQiIGN5PSI1NSIgcj0iMiIvPjwvZz48L3N2Zz4K');
+            -webkit-mask: var(--yellow-dots) no-repeat top left;
+            mask: var(--yellow-dots) no-repeat top left;
+            background-color: rgb(253, 214, 99);
+            height: 57px;
+            left: 13%;
+            top: 18%;
+            width: 76px;
+        }
+        @keyframes yellow-semicircle-animation {
+            40% {
+                animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transform: translateY(40px) rotate(-1deg);
+            }
+        }
+        .yellow-semicircle {
+            --yellow-semicircle: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMTEiIGhlaWdodD0iMTcxIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNTIuOTU1IDE1NS4zMjNjLTUwLjQ5NCAyOS4zNTktMTEzLjc5IDE2LjE2LTE0OC45MzctMjguNTQ2LTMuNDktNC40NC05LjE4LTE0LjQ4IDUuODY2LTIzLjIyN0wxODIuNjEyIDMuMTJjMTMuNjM2LTcuOTMgMTcuNDQ0IDEuMjMyIDE5LjMxMSA1LjY4OCAyMi40MTggNTMuNTE3IDIuMjczIDExNi43MjItNDguOTY4IDE0Ni41MTV6Ii8+PC9zdmc+Cg==');
+            -webkit-mask: var(--yellow-semicircle) no-repeat top right;
+            mask: var(--yellow-semicircle) no-repeat top right;
+            animation: yellow-semicircle-animation 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            background-color: rgb(250, 207, 76);
+            height: 171px;
+            right: 28.5%;
+            top: -50px;
+            transform: rotate(-7deg);
+            width: 211px;
+        }
+        @keyframes expand{
+            from{
+                transform: scale(0);
+            }to{
+                transform: scale(1);
+            }
+        }
+        ripple{ /*It might not be always in a container*/
+            opacity: var(--ripple-opacity, .25);
+            background: currentcolor;
+            display: block;
+            border-radius: 50%;
+            position: absolute;
+            animation: 1s expand cubic-bezier(.1, .9, .1, .9);
+        }
+    </style>
+</head>
+<body>
+    <aside class="background fade-in is">
+        <span class="blue-circle-container"></span>
+        <span class="green-rectangle"></span>
+        <span class="grey-oval"></span>
+        <span class="grey-rounded-rectangle"></span>
+        <span class="red-triangle"></span>
+        <span class="yellow-dots"></span>
+        <span class="yellow-semicircle"></span>
+    </aside>
+    
+</body>
