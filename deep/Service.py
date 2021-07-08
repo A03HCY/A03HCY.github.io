@@ -1,14 +1,18 @@
 '''
 File    : Service.py
 Author  : Aiden
-Project : Hopkins
+Project : Intellen
 Url     : https://gitee.com/intellen/network
 '''
 import socketserver
-import struct
-import ast
+import ast, struct
+import queue, random
 
 __version__ = '1.0.5'
+
+def RanCode(num):
+    ran_str = ''.join(random.sample('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', num))
+    return ran_str
 
 class Node:
     '''
@@ -22,9 +26,10 @@ class Node:
         self.account = account
         self.addr = addr
         self.conn = conn
+        self.que = queue.Queue()
 
 class Connector:
-    '''Manage the nodes'''
+    '''Manage nodes'''
     def __init__(self):
         self.__list = []
     
@@ -81,20 +86,28 @@ class CoreTree(socketserver.BaseRequestHandler):
     def Recv(self):
         conn = self.request
         length = struct.unpack('i',conn.recv(4))[0]
-        data = ''
+        data = b''
         while length > 1024:
-            data += conn.recv(1024).decode('utf-8')
+            data += conn.recv(1024)
             length -= 1024
-        data += conn.recv(length).decode('utf-8')
-        return data
+        data += conn.recv(length)
+        return data.decode('utf-8')
 
-    def Send(self, data, conn=None):
-        if not conn:
-            conn = self.request
+    def Send(self, data, node=None):
+        if not node:
+            node = self.node
+        conn = node.conn
+        LineCode = RanCode(8)
+        node.que.put(LineCode)
+        print(LineCode)
+        while True:
+            if node.que.get() == LineCode:
+                break
         length = len(data)
         header = struct.pack('i', length)
         conn.send(header)
         conn.send(data)
+        node.que.task_done()
 
     def sign(self):
         # When another node connect here
@@ -119,7 +132,7 @@ class CoreTree(socketserver.BaseRequestHandler):
         # Save the infomation
         self.node = Node(account, self.client_address, conn)
         connector.add(self.node)
-        print(account, self.client_address, conn)
+        print(account, self.client_address)
         return True
 
     def forward(self, data):
@@ -152,7 +165,7 @@ class CoreTree(socketserver.BaseRequestHandler):
         # Send to
         data = str(data).encode('utf-8')
         for node in Alive:
-            try:self.Send(data, node.conn)
+            try:self.Send(data, node)
             except:pass
         return True
     
@@ -184,6 +197,10 @@ class CoreTree(socketserver.BaseRequestHandler):
                     continue
                 if 'cmd' in data:
                     self.command(data)
+                    continue
+                if 'data' in data:
+                    continue
+                if 'file' in data:
                     continue
             connector.remove(self.node.account)
 
