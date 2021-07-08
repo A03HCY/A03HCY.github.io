@@ -7,6 +7,7 @@ Url     : https://gitee.com/intellen/network
 import socketserver
 import ast, struct
 import queue, random
+import time
 
 __version__ = '1.0.5'
 
@@ -82,14 +83,16 @@ class CoreTree(socketserver.BaseRequestHandler):
         super().setup()
         # Connect here should send a code which is this so that can continue
         self.conpwd = 'sf5dfe146'
+        self.bufsize = 4096
     
     def Recv(self):
         conn = self.request
         length = struct.unpack('i',conn.recv(4))[0]
+        buf = self.bufsize
         data = b''
-        while length > 1024:
-            data += conn.recv(1024)
-            length -= 1024
+        while length > buf:
+            data += conn.recv(buf)
+            length -= buf
         data += conn.recv(length)
         return data.decode('utf-8')
 
@@ -97,7 +100,7 @@ class CoreTree(socketserver.BaseRequestHandler):
         if not node:
             node = self.node
         conn = node.conn
-        LineCode = RanCode(8)
+        LineCode = RanCode(4)
         node.que.put(LineCode)
         print(LineCode)
         while True:
@@ -105,8 +108,10 @@ class CoreTree(socketserver.BaseRequestHandler):
                 break
         length = len(data)
         header = struct.pack('i', length)
-        conn.send(header)
-        conn.send(data)
+        try:
+            conn.send(header)
+            conn.send(data)
+        except:pass
         node.que.task_done()
 
     def sign(self):
@@ -165,8 +170,8 @@ class CoreTree(socketserver.BaseRequestHandler):
         # Send to
         data = str(data).encode('utf-8')
         for node in Alive:
-            try:self.Send(data, node)
-            except:pass
+            self.Send(data, node)
+        time.sleep(0.001)
         return True
     
     def command(self, data):
@@ -182,7 +187,9 @@ class CoreTree(socketserver.BaseRequestHandler):
 
     def handle(self):
         global connector
-        if self.sign() == False:self.returninfo('401')
+        if self.sign() == False:
+            try:self.returninfo('401')
+            except:pass
         else:
             conn = self.request
             while True:
