@@ -13,18 +13,53 @@
     <title id="title">Acdp | Preview</title>
 </head>
 
-<body>
+<body class="mdui-theme-primary-orange mdui-theme-accent-orange mdui-theme-layout-auto">
 
-    <div class="mdui-container">
-        <video class="mdui-video-fluid" controls>
-            <source id="video" type="video/mp4">
-        </video>
+    <div class="mdui-appbar mdui-shadow-0">
+        <div class="mdui-toolbar mdui-color-theme mdui-text-color-white">
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon">
+                <i class="mdui-icon material-icons mdui-text-color-white">menu</i>
+            </a>
+            <a href="javascript:;" class="mdui-typo-headline mdui-hidden-xs mdui-text-color-white">Cloud</a>
+            <a id="b-title" href="javascript:;" class="mdui-typo-title mdui-text-color-white">Preview.</a>
+            <div class="mdui-toolbar-spacer"></div>
+        </div>
     </div>
 
-    <script src="../Resource/js/mdui.min.js"></script>
+    <div class="mdui-container mdui-m-y-2">
+        <div id="m-title" class="mdui-typo-title">Title</div>
+        <div class="mdui-typo mdui-m-b-1">
+            <hr />
+        </div>
+        <video id="video" class="mdui-video-fluid mdui-center mdui-hidden" controls></video>
+        <svg id="audio-icon" class="mdui-center mdui-text-color-theme mdui-hidden" width="100px" height="100px"
+            style="margin-top:calc(10vh);" viewBox="0 0 24 24">
+            <path
+                d="M12 5v8.55c-.94-.54-2.1-.75-3.33-.32c-1.34.48-2.37 1.67-2.61 3.07a4.007 4.007 0 0 0 4.59 4.65c1.96-.31 3.35-2.11 3.35-4.1V7h2c1.1 0 2-.9 2-2s-.9-2-2-2h-2c-1.1 0-2 .9-2 2z"
+                fill="currentColor"></path>
+        </svg>
+        <audio id="audio" class="mdui-hidden" controls="controls" style="width:100%;margin-top:calc(10vh);"></audio>
+    </div>
+
+
+
+    <script src="/static/js/mdui.min.js"></script>
     <script>
         var $ = mdui.$;
         var API = 'https://data.acdp.top';
+
+        const video_dotn = ['.mp4', '.ogg'];
+        const audio_dotn = ['.mp3', '.ogg', '.wav'];
+        const offic_dotn = ['.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx'];
+
+        function HAS(org, target) {
+            for (v of org) {
+                if (v === target) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         function setCookie(cname, cvalue, exdays) {
             var d = new Date();
@@ -49,7 +84,57 @@
             if (r != null) return unescape(r[2]); return null;
         }
 
-        $('#video').attr('src', API + '/share/preview?code=' + GetKey('code'))
+        function AVD(tar) {
+            $('#' + tar).attr('src', API + '/share/raw?preview=true&code=' + GetKey('code'))
+            $('#' + tar).toggleClass('mdui-hidden');
+        }
+
+        function LoadFile(data) {
+            var dotn = data.dotn;
+            if ('info' in data) {
+                $('#m-title').text('预览失效');
+                mdui.snackbar({
+                    message: '预览失效',
+                    position: 'right-bottom',
+                });
+                return;
+            }
+            if (HAS(video_dotn, dotn)) {
+                AVD('video');
+            } else if (HAS(audio_dotn, dotn)) {
+                AVD('audio');
+                $('#audio-icon').toggleClass('mdui-hidden');
+            } else if (HAS(offic_dotn, dotn)) {
+                var url = API + '/share/raw/' + GetKey('code') + '/' + data.name;
+                url = 'https://view.officeapps.live.com/op/view.aspx?src=' + escape(url);
+                alert(url);
+                location.href = url;
+            } else {
+                $('#m-title').text('头发不允许的格式 ( 不支持的格式 )');
+                mdui.snackbar({
+                    message: '预览失效',
+                    position: 'right-bottom',
+                });
+            }
+        }
+
+        function LoadCode() {
+            $.ajax({
+                method: 'GET',
+                url: API + '/share/raw?preview=true&info=true&code=' + GetKey('code'),
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    console.log(data);
+                    $('#m-title').text(data.name);
+                    LoadFile(data);
+                },
+                error: function (xhr, textStatus) {
+
+                }
+            });
+        }
+
+        LoadCode();
 
     </script>
 </body>
