@@ -39,6 +39,7 @@
                 fill="currentColor"></path>
         </svg>
         <audio id="audio" class="mdui-hidden" controls="controls" style="width:100%;margin-top:calc(10vh);"></audio>
+        <img id="image" class="mdui-img-fluid mdui-hidden"/>
     </div>
 
 
@@ -50,6 +51,7 @@
 
         const video_dotn = ['.mp4', '.ogg'];
         const audio_dotn = ['.mp3', '.ogg', '.wav'];
+        const image_dotn = ['.png', '.jpg'];
         const offic_dotn = ['.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx'];
 
         function HAS(org, target) {
@@ -104,6 +106,8 @@
             } else if (HAS(audio_dotn, dotn)) {
                 AVD('audio');
                 $('#audio-icon').toggleClass('mdui-hidden');
+            } else if (HAS(image_dotn, dotn)) {
+                AVD('image');
             } else if (HAS(offic_dotn, dotn)) {
                 var url = API + '/share/raw/' + GetKey('code') + '/' + data.name;
                 url = 'https://view.officeapps.live.com/op/view.aspx?src=' + escape(url);
