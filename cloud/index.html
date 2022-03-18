@@ -419,7 +419,10 @@
             var code = GetKey('code');
             if (getCookie('Acdp-Cloud-Reload') != '') {
                 if (code == null) LoadBox();
-                else Forget();
+                else {
+                    setCookie('Acdp-Cloud-Reload', '');
+                    location.reload();
+                };
             } else if (code == null) {
                 $('#NoCode').toggleClass('mdui-hidden');
                 $('#waiting').toggleClass('mdui-hidden');
