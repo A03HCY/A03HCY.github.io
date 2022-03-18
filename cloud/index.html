@@ -418,7 +418,7 @@
         function Load() {
             var code = GetKey('code');
             if (getCookie('Acdp-Cloud-Reload') != '') {
-                LoadBox();
+                if (code == null) LoadBox();
             } else if (code == null) {
                 $('#NoCode').toggleClass('mdui-hidden');
                 $('#waiting').toggleClass('mdui-hidden');
