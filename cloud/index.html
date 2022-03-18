@@ -27,6 +27,9 @@
             <a id="share" href="javascript:;" class="mdui-btn mdui-btn-icon mdui-hidden">
                 <i class="mdui-icon material-icons mdui-text-color-white">share</i>
             </a>
+            <a id="forget" href="javascript:;" onclick="Forget();" class="mdui-btn mdui-btn-icon mdui-hidden">
+                <i class="mdui-icon material-icons mdui-text-color-white">exit_to_app</i>
+            </a>
             <a id="refre" href="javascript:;" onclick="location.reload();" class="mdui-btn mdui-btn-icon">
                 <i class="mdui-icon material-icons mdui-text-color-white">refresh</i>
             </a>
@@ -304,6 +307,7 @@
             ACEPWD = info['box-pasw'];
             ACEUID = info['box-code'];
             if (DeviceIden() == 'computer') setCookie('Acdp-Cloud-Reload', '');
+            if (DeviceIden() == 'phone') $('#forget').toggleClass('mdui-hidden');;
             $.ajax({
                 method: 'POST',
                 url: API + '/share/info',
