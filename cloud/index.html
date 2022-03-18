@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="zh-cmn-Hans" style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="Shortcut Icon" href="../Resource/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../Resource/css/mdui.min.css" />
+    <link rel="stylesheet" href="../Resource/css/dlc.css" />
+    <title id="title">Acdp | Cloud</title>
+</head>
+
+<body class="mdui-theme-primary-orange mdui-theme-accent-orange mdui-theme-layout-auto">
+
+    <div class="mdui-appbar mdui-shadow-0">
+        <div class="mdui-toolbar mdui-color-theme mdui-text-color-white">
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon">
+                <i class="mdui-icon material-icons mdui-text-color-white">menu</i>
+            </a>
+            <a href="javascript:;" class="mdui-typo-headline mdui-hidden-xs mdui-text-color-white">Acdp</a>
+            <a id="title" href="javascript:;" class="mdui-typo-title mdui-text-color-white">Cloud.</a>
+            <div class="mdui-toolbar-spacer"></div>
+            <a id="account-ico"></a>
+            <a id="share" href="javascript:;" class="mdui-btn mdui-btn-icon mdui-hidden">
+                <i class="mdui-icon material-icons mdui-text-color-white">share</i>
+            </a>
+            <a id="refre" href="javascript:;" onclick="location.reload();" class="mdui-btn mdui-btn-icon">
+                <i class="mdui-icon material-icons mdui-text-color-white">refresh</i>
+            </a>
+        </div>
+    </div>
+    <div id="progress" class="mdui-progress">
+        <div class="mdui-progress-indeterminate"></div>
+    </div>
+
+    <div id="waiting" class="mdui-center" style="min-width:320px;margin-top:calc(30vh);">
+        <div class="mdui-container">
+            <div id="waiting-info" class="mdui-typo-title mdui-center mdui-text-center">正在连接到 Acdp Cloud ...</div>
+        </div>
+    </div>
+
+    <div id="disconnect" class="mdui-center mdui-hidden" style="min-width:320px;margin-top:calc(25vh);">
+        <div class="mdui-container">
+            <svg class="mdui-center mdui-text-color-theme" width="100px" height="100px" viewBox="0 0 24 24">
+                <path
+                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8zm.5-13H11v6l5.25 3.15l.75-1.23l-4.5-2.67z"
+                    fill="currentColor"></path>
+            </svg>
+            <div class="mdui-typo-title mdui-center mdui-text-center mdui-m-t-4">当前无法连接到 Acdp Cloud .</div>
+        </div>
+    </div>
+
+    <div id="noexist" class="mdui-center mdui-hidden" style="min-width:320px;margin-top:calc(25vh);">
+        <div class="mdui-container">
+            <svg class="mdui-center mdui-text-color-theme" width="100px" height="100px" viewBox="0 0 24 24">
+                <path
+                    d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM11 5h2v6h-2zm0 8h2v2h-2z"
+                    fill="currentColor"></path>
+            </svg>
+            <div class="mdui-typo-title mdui-center mdui-text-center mdui-m-t-4">找不到储存方格.<button
+                    onclick="location.href='https://acdp.top/cloud';"
+                    class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-m-l-2">
+                    <div class="mdui-text-color-white">返回</div>
+                </button></div>
+        </div>
+    </div>
+
+    <div id="NoCode" class="mdui-container mdui-hidden" style="margin-top:calc(15vh);">
+        <div class="mdui-card mdui-center mdui-p-y-3" style="max-width:500px;">
+            <div class="mdui-container">
+                <div class="mdui-card-primary-title mdui-valign mdui-m-b-1"><i
+                        class="mdui-icon material-icons mdui-text-color-theme mdui-m-r-1">cloud</i>储存方格 Code</div>
+                <div class="mdui-textfield">
+                    <label class="mdui-textfield-label">Box Code</label>
+                    <input id="code" class="mdui-textfield-input" type="text" style="text-align:center;" />
+                </div>
+                <div class="mdui-row-xs-1 mdui-m-t-1">
+                    <div class="mdui-col">
+                        <button onclick="FinCode();"
+                            class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">
+                            <div class="mdui-text-color-white">进入</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="HaveCode" class="mdui-container mdui-hidden" style="margin-top:calc(15vh);">
+        <div class="mdui-card mdui-center mdui-p-y-3" style="max-width:500px;">
+            <div class="mdui-container">
+                <div class="mdui-card-primary-title mdui-valign mdui-m-b-2"><i
+                        class="mdui-icon material-icons mdui-text-color-theme mdui-m-r-1">code</i>访问密码</div>
+                <div class="mdui-chip mdui-color-white mdui-m-t-1">
+                    <img id="uploader-head" class="mdui-chip-icon" />
+                    <span id="uploader-name" class="mdui-chip-title"></span>
+                </div>
+                <div class="mdui-textfield">
+                    <label class="mdui-textfield-label">Box Password</label>
+                    <input id="pwd" class="mdui-textfield-input" type="password" style="text-align:center;" />
+                </div>
+                <div class="mdui-row-xs-1 mdui-m-t-1">
+                    <div class="mdui-col">
+                        <button id="iden" onclick="Idenfy();"
+                            class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple">
+                            <div class="mdui-text-color-white">验证</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="show" class="mdui-container mdui-hidden">
+        <div class="mdui-m-t-5">
+            <button class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-m-y-2 mdui-text-color-white"
+                onclick="GoBack();" id="show-btn">GoBack</button>
+            <div id="show-list" class="mdui-list">
+            </div>
+        </div>
+    </div>
+
+    <script src="../Resource/js/mdui.min.js"></script>
+    <script>
+        var $ = mdui.$;
+        var HDATA, ACEPWD, ACEUID;
+        var COUDF = true;
+        var PATH = '';
+        var API = 'https://data.acdp.top';
+
+        const LIST = '<label ondblclick="CL(this)" val="VAL" class="mdui-list-item mdui-ripple"><div class="mdui-checkbox"><input type="checkbox"> <i class="mdui-checkbox-icon"></i></div><i class="mdui-list-item-icon mdui-icon material-icons">ICON</i><div class="mdui-list-item-content">TITLE</div><button onclick="Preview(this);" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">open_in_new</i></button></label>';
+        const FILE = 'insert_drive_file';
+        const FOLD = 'folder';
+
+        var now_path = [];
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name) == 0) { return c.substring(name.length, c.length); }
+            }
+            return "";
+        }
+
+        function GetKey(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        function DownCode(code) {
+            var url = API + '/share/download?code=' + code;
+            window.open(url, '_blank');
+        }
+
+        function PreviewOpen(code) {
+            var url = 'https://acdp.top/cloud/preview?code=' + code;
+            window.open(url, '_blank');
+        }
+
+        function GetCode(path, name, suc_func, ero_func, preview=false) {
+            $.ajax({
+                method: 'POST',
+                url: API + '/share/code',
+                data: {
+                    uid: ACEUID,
+                    pwd: ACEPWD,
+                    path: path,
+                    name: name,
+                    preview: preview
+                },
+                success: function (data) {
+                    console.log(data);
+                    try {
+                        data = JSON.parse(data);
+                        if (ero_func) ero_func(data);
+                        return;
+                    } catch {
+                        if (suc_func) suc_func(data);
+                    }
+                },
+                error: function (xhr, textStatus) {
+                    if (ero_func) ero_func({
+                        'info': 'net-error'
+                    })
+                }
+            })
+        }
+
+        function Forget() {
+            setCookie('Acdp-Cloud-Reload', '');
+            location.href = 'https://acdp.top/cloud';
+        }
+
+        function Preview(e) {
+            var name = $(e).parent().find('.mdui-list-item-content').text();
+            var type = $(e).parent().attr('val');
+            var path = now_path.join('/');
+            console.log(name, type, path);
+            GetCode(path, name, PreviewOpen);
+        }
+
+        function CL(e) {
+            var name = $(e).find('.mdui-list-item-content').text();
+            var type = $(e).attr('val');
+            console.log(name, type);
+            if (type == 'folder') {
+                now_path.push(name);
+                console.log(now_path);
+                Refresh();
+            }
+        }
+
+        function GoBack() {
+            now_path.pop();
+            Refresh();
+        }
+
+        function AddList(type, title) {
+
+            if (type == 'folder') {
+                var icon = FOLD;
+            } else {
+                var icon = FILE;
+            }
+
+            var html = LIST.replace('VAL', type).replace('ICON', icon).replace('TITLE', title);
+            $('#show-list').html($('#show-list').html() + html);
+        }
+
+        function Refresh() {
+            if (COUDF == false) return;
+            COUDF = false;
+
+            var path = now_path.join('/');
+
+            $.ajax({
+                method: 'POST',
+                url: API + '/share/info',
+                data: {
+                    uid: ACEUID,
+                    pwd: ACEPWD,
+                    path: path
+                },
+                success: function (data) {
+                    data = JSON.parse(data);
+                    $('#show-list').html('');
+
+                    for (var i in data.d) {
+                        AddList('folder', data.d[i].name)
+                    }
+                    for (var i in data.f) {
+                        AddList('file', data.f[i].name)
+                    }
+
+                    COUDF = true
+                }
+            })
+        }
+
+        function Start() {
+            $('#share').toggleClass('mdui-hidden');
+            $('#refre').toggleClass('mdui-hidden');
+            $('#show').toggleClass('mdui-hidden');
+            Refresh();
+        }
+
+        function LoadBox() {
+            $('#waiting-info').text('拉取信息中 ...');
+            try {
+                var info = JSON.parse(getCookie('Acdp-Cloud-Reload'));
+            } catch {
+                Forget();
+            }
+            ACEPWD = info['box-pasw'];
+            ACEUID = info['box-code'];
+            setCookie('Acdp-Cloud-Reload', '');
+            $.ajax({
+                method: 'POST',
+                url: API + '/share/info',
+                data: {
+                    uid: info['box-code'],
+                    pwd: info['box-pasw']
+                },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    if ('info' in data) {
+                        $('#waiting').toggleClass('mdui-hidden');
+                        $('#progress').toggleClass('mdui-hidden');
+                        $('#waiting-info').text('正在连接到 Acdp Cloud ...');
+                        $('#noexist').toggleClass('mdui-hidden');
+                        setCookie('Acdp-Cloud-Reload', '');
+                        return;
+                    }
+                    $('#title').text('Cloud - ' + data.name);
+                    mdui.snackbar({
+                        message: '载入成功',
+                        position: 'right-bottom',
+                    });
+                    $('#waiting').toggleClass('mdui-hidden');
+                    $('#progress').toggleClass('mdui-hidden');
+                    $('#waiting-info').text('正在连接到 Acdp Cloud ...');
+                    Start();
+                },
+                error: function (xhr, textStatus) {
+                    $('#waiting').toggleClass('mdui-hidden');
+                    $('#progress').toggleClass('mdui-hidden');
+                    $('#waiting-info').text('正在连接到 Acdp Cloud ...');
+                    $('#disconnect').toggleClass('mdui-hidden');
+                }
+            });
+        }
+
+        function RetoLoad() {
+            var data = {
+                'box-code': GetKey('code'),
+                'box-pasw': $('#pwd').val()
+            };
+            setCookie('Acdp-Cloud-Reload', JSON.stringify(data));
+            location.href = 'https://acdp.top/cloud';
+        }
+
+        function Idenfy() {
+            if ($('#pwd').val() == '') return;
+            $('#progress').toggleClass('mdui-hidden');
+            $('#iden').attr('disabled', '');
+            $.ajax({
+                method: 'POST',
+                url: API + '/share/info',
+                data: {
+                    uid: HDATA.uid,
+                    pwd: $('#pwd').val()
+                },
+                success: function (data) {
+                    $('#progress').toggleClass('mdui-hidden');
+                    $('#iden').removeAttr('disabled');
+                    var data = JSON.parse(data);
+                    console.log(data);
+                    if ('info' in data) {
+                        mdui.snackbar({
+                            message: '验证失败',
+                            position: 'right-bottom',
+                        });
+                        return;
+                    }
+                    RetoLoad();
+                },
+                error: function (xhr, textStatus) {
+                    $('#progress').toggleClass('mdui-hidden');
+                    $('#iden').removeAttr('disabled');
+                    mdui.snackbar({
+                        message: '无法连接 Acdp Cloud .',
+                        position: 'right-bottom',
+                    });
+                }
+            });
+        }
+
+        function LoadUploader(info) {
+            $('#waiting-info').text('拉取信息中 ...');
+            var uid = info.uploader.toString();
+            $.ajax({
+                method: 'GET',
+                url: API + '/auth/info?uid=' + uid,
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    $('#uploader-name').text(data.name);
+                    $('#uploader-head').attr('src', API + '/auth/head?uid=' + uid);
+                    setTimeout(function () {
+                        $('#waiting').toggleClass('mdui-hidden');
+                        $('#progress').toggleClass('mdui-hidden');
+                        $('#HaveCode').toggleClass('mdui-hidden');
+                        $('#waiting-info').text('正在连接到 Acdp Cloud ...');
+                    }, 500);
+                },
+                error: function (xhr, textStatus) {
+                    $('#progress').toggleClass('mdui-hidden');
+                    $('#waiting').toggleClass('mdui-hidden');
+                    $('#waiting-info').text('正在连接到 Acdp Cloud ...');
+                    $('#disconnect').toggleClass('mdui-hidden');
+                }
+            });
+        }
+
+        function Load() {
+            var code = GetKey('code');
+            if (getCookie('Acdp-Cloud-Reload') != '') {
+                LoadBox();
+            } else if (code == null) {
+                $('#NoCode').toggleClass('mdui-hidden');
+                $('#waiting').toggleClass('mdui-hidden');
+                $('#progress').toggleClass('mdui-hidden');
+            } else {
+                $.ajax({
+                    method: 'POST',
+                    url: API + '/share/info',
+                    data: {
+                        uid: code
+                    },
+                    success: function (data) {
+                        var info = JSON.parse(data);
+                        if ('info' in info) {
+                            $('#waiting').toggleClass('mdui-hidden');
+                            $('#progress').toggleClass('mdui-hidden');
+                            $('#noexist').toggleClass('mdui-hidden');
+                            return;
+                        }
+                        HDATA = info;
+                        $('#title').text('Cloud - ' + info.name);
+
+                        var pwd = GetKey('pwd');
+                        if (pwd == null) pwd = '';
+                        $('#pwd').val(pwd);
+
+                        LoadUploader(info);
+                    }
+                });
+            }
+        }
+
+        function Online() {
+            $.ajax({
+                method: 'GET',
+                url: API + '/share/',
+                success: function (data) {
+                    Load();
+                },
+                error: function (xhr, textStatus) {
+                    $('#progress').toggleClass('mdui-hidden');
+                    $('#waiting').toggleClass('mdui-hidden');
+                    $('#disconnect').toggleClass('mdui-hidden');
+                }
+            });
+        }
+        setTimeout(function () { Online(); }, 500);
+
+        function FinCode() {
+            var url = 'https://acdp.top/cloud?code=' + $('#code').val();
+            location.href = url;
+        }
+    </script>
+    <script src="https://data.acdp.top/static/js/account.js"></script>
+</body>
+
+</html>

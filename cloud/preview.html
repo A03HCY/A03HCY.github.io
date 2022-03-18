@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-cmn-Hans" style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="Shortcut Icon" href="../Resource/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../Resource/css/mdui.min.css" />
+    <link rel="stylesheet" href="../Resource/css/dlc.css" />
+    <title id="title">Acdp | Preview</title>
+</head>
+
+<body>
+
+    <div class="mdui-container">
+        <video class="mdui-video-fluid" controls>
+            <source id="video" type="video/mp4">
+        </video>
+    </div>
+
+    <script src="../Resource/js/mdui.min.js"></script>
+    <script>
+        var $ = mdui.$;
+        var API = 'https://data.acdp.top';
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name) == 0) { return c.substring(name.length, c.length); }
+            }
+            return "";
+        }
+
+        function GetKey(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        $('#video').attr('src', API + '/share/preview?code=' + GetKey('code'))
+
+    </script>
+</body>
+
+</html>

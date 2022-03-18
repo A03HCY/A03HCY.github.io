@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.min.css" />
+    <title>Hi</title>
+</head>
+
+<body class="mdui-theme-primary-orange mdui-m-y-4 mdui-m-x-2">
+
+    <div class="mdui-center" style="max-width:800px;">
+        <div class="mdui-textfield">
+            <input id="inp" class="mdui-textfield-input" type="text" placeholder="Url" />
+        </div>
+        <button class="mdui-btn mdui-color-blue mdui-text-color-white mdui-ripple" onclick="aptin();">Go</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <script>
+        var $ = mdui.$;
+
+        function aptin() {
+            var url = $("#inp").val();
+            location.href = url;
+        }
+        function RH() {
+            var req = new XMLHttpRequest();
+            req.open('GET', document.location, false);
+            req.send(null);
+            var headers = req.getAllResponseHeaders().toLowerCase();
+            console.log(headers);
+        }
+    </script>
+</body>
+
+</html>
