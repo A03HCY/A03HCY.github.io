@@ -198,7 +198,7 @@
         }
 
         function DownCode(code) {
-            var url = API + '/share/download?code=' + code;
+            var url = API + '/share/raw?code=' + code;
             window.open(url, '_blank');
         }
 
@@ -290,7 +290,7 @@
         }
 
         function AddList(type, title) {
-            var btn = DOWN;
+            var btn = '';
 
             if (type == 'folder') {
                 var icon = FOLD;
@@ -308,6 +308,8 @@
                 } else if (HAS(markd_dotn, Suffix(title))) {
                     icon = 'book';
                     btn = BUTN;
+                } else {
+                    btn = DOWN;
                 }
             }
 
