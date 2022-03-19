@@ -343,7 +343,7 @@
                 });
             });
         } else if (GetKey('code')) {
-            var url = API + '/share/raw?code=' + code;
+            var url = API + '/share/raw?code=' + GetKey('code');
             $('#readin').toggleClass('mdui-hidden');
             GetReadme(url, function Done() {
                 Markdown();
