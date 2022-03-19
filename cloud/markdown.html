@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="zh-cmn-Hans" style="height:100%;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="Shortcut Icon" href="../Resource/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../Resource/css/mdui.min.css" />
+    <link rel="stylesheet" href="../Resource/css/dlc.css" />
+    <title id="title">Cloud | Markdown</title>
+</head>
+
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
+
+    <div id="appbar" class="mdui-appbar mdui-appbar-fixed mdui-shadow-0">
+        <div class="mdui-toolbar mdui-color-theme mdui-text-color-white">
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#drawer'}">
+                <i class="mdui-icon material-icons mdui-text-color-white">menu</i>
+            </a>
+            <a href="javascript:;" class="mdui-typo-headline mdui-hidden-xs mdui-text-color-white">Cloud</a>
+            <a id="b-title" href="javascript:;" class="mdui-typo-title mdui-text-color-white">Markdown.</a>
+            <div class="mdui-toolbar-spacer"></div>
+            <div class="mdui-btn-group">
+                <button id="search-button" mdui-dialog="{target: '#search'}" type="button" class="mdui-btn"><i
+                        class="mdui-icon material-icons mdui-text-color-white">search</i></button>
+                <button type="button" class="mdui-btn mdui-hidden-xs" onclick="Markdown();"><i
+                        class="mdui-icon material-icons mdui-text-color-white">refresh</i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mdui-drawer mdui-drawer-close" id="drawer">
+        <ul class="mdui-list">
+            <li class="mdui-subheader">文档</li>
+            <li id="readin" class="mdui-list-item mdui-ripple" mdui-dialog="{target: '#upload'}">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-orange">link</i>
+                <div class="mdui-list-item-content">导入文档</div>
+            </li>
+            <li class="mdui-list-item mdui-ripple" onclick="Save();">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">file_download</i>
+                <div class="mdui-list-item-content">下载</div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="org">
+        <div style="width: 100%;">
+            <article id='card' class="mdui-card mdui-center mdui-shadow-4 mdui-m-y-5 mdui-typo mdui-p-x-5 mdui-p-y-3"
+                style="max-width: 820px; min-height: 1200px;">
+                <div class="mdui-text-center" style="margin-top: 20%;">
+                    <div class="mdui-spinner mdui-spinner-colorful mdui-m-b-1"></div>
+                    <div id="d-text">Loading</div>
+                </div>
+            </article>
+        </div>
+
+        <div class="mdui-dialog" id="upload">
+            <div class="mdui-card mdui-p-x-3 mdui-p-y-3">
+                <div class="mdui-card-actions">
+                    <div class="mdui-card-primary-title">开始导入文档</div>
+                    <div class="mdui-textfield mdui-m-b-1">
+                        <label class="mdui-textfield-label">Markdown Url</label>
+                        <input id="upload-input" class="mdui-textfield-input" type="text" />
+                    </div>
+                    <input type="file" id="fileInput" class="mdui-hidden" accept=".md">
+                    <button id="local" class="mdui-btn mdui-color-blue mdui-text-color-white mdui-ripple mdui-m-b-1"
+                        mdui-dialog-close>
+                        <i class="mdui-icon material-icons mdui-m-r-1">computer</i>从本地选择文档
+                    </button>
+                    <button id="cloud" class="mdui-btn mdui-color-blue mdui-text-color-white mdui-ripple mdui-m-b-1"
+                        mdui-dialog-close>
+                        <i class="mdui-icon material-icons mdui-m-r-1">cloud</i>从上方链接导入文档
+                    </button>
+                    <div class="mdui-card-primary-subtitle">PS.代码渲染需要一定时间</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdui-dialog" id="search">
+            <div class="mdui-card mdui-p-x-3 mdui-p-y-3">
+                <div class="mdui-card-actions">
+                    <div class="mdui-card-primary-title">搜索文档</div>
+                    <div class="mdui-card-primary-subtitle mdui-m-t-1">PS.可能会搜索到 Markdown 结构</div>
+                    <div class="mdui-textfield mdui-m-b-1">
+                        <label class="mdui-textfield-label">Key Word</label>
+                        <input id="search-input" class="mdui-textfield-input" type="text" />
+                    </div>
+                    <button id="search-start"
+                        class="mdui-btn mdui-color-blue mdui-text-color-white mdui-ripple mdui-m-b-1" mdui-dialog-close>
+                        <i class="mdui-icon material-icons mdui-m-r-1">search</i>搜索
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Resource/js/mdui.min.js"></script>
+    <script src="../Resource/js/Saver.js"></script>
+    <script src="../Resource/js/showdown.min.js"></script>
+    <script src="../Resource/js/highlight.js"></script>
+    <script>
+        var $ = mdui.$;
+        var API = 'https://data.acdp.top';
+
+
+        function GetHeight() {
+            var winHeight = 0;
+            if (window.innerHeight) {
+                winHeight = window.innerHeight;
+            }
+            else if ((document.body) && (document.body.clientHeight)) {
+                winHeight = document.body.clientHeight;
+            }
+            if (document.documentElement && document.documentElement.clientHeight) {
+                winHeight = document.documentElement.clientHeight;
+            }
+            return winHeight
+        }
+
+        function GetWidth() {
+            var winWidth = 0;
+            if (window.innerWidth) {
+                winWidth = window.innerWidth;
+            }
+            else if ((document.body) && (document.body.clientWidth)) {
+                winWidth = document.body.clientWidth;
+            }
+            if (document.documentElement && document.documentElement.clientWidth) {
+                winWidth = document.documentElement.clientWidth;
+            }
+            return winWidth
+        }
+
+        function AutoHeight(id, length) {
+            winHeight = GetHeight() - length;
+            document.getElementById(id).style.height = winHeight + "px";
+        }
+
+        function AutoWidth(id, length) {
+            winWidth = GetWidth() - length;
+            document.getElementById(id).style.width = winWidth + "px";
+        }
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name) == 0) { return c.substring(name.length, c.length); }
+            }
+            return "";
+        }
+
+        function GetKey(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        var loadhtml = '<div class="mdui-text-center" style="margin-top: 20%;"><div class="mdui-spinner mdui-spinner-colorful mdui-m-b-1"></div><div id="d-text">Loading</div></div>';
+        var mod = 'pre';
+        var car = true;
+
+        String.prototype.ReplaceAll = function (f, e) {
+            var reg = new RegExp(f, "g");
+            return this.replace(reg, e);
+        }
+
+        function Markdown(art = null) { // 预览本地文档
+            var converter = new showdown.Converter();
+            if (art == null) {
+                var temp = localStorage.getItem("Acdp-Cloud-Markdown");
+            } else {
+                var temp = art;
+            }
+            document.getElementById("card").innerHTML = converter.makeHtml(temp);
+            hljs.initHighlightingOnLoad();
+        }
+
+        function GetQuery(name) { // 获取参数
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var dat = window.location.search.substr(1).match(reg);
+            if (dat != null) {
+                return unescape(dat[2]);
+            } else {
+                return null;
+            }
+        }
+
+        function GetReadme(FN, func = null) { // 下载网络文档
+            if (FN == null) return;
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                xmlhttp = new ActiveXObject('Microsoft.XMLHttp');
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    localStorage.setItem("Acdp-Cloud-Markdown", xmlhttp.responseText);
+                    if (func) func();
+                }
+            }
+            xmlhttp.open('GET', FN, true);
+            xmlhttp.send();
+        }
+
+        function Waiting() { // 显示加载动画
+            document.getElementById("card").innerHTML = loadhtml;
+            mdui.mutation();
+        }
+
+        // 控件
+        hljs.initHighlightingOnLoad();
+        var inst = new mdui.Dialog('#upload');
+        document.getElementById('fileInput').addEventListener('change', function selectedFileChanged() {
+            document.getElementById('d-text').innerText = 'Reading';
+            if (this.files.length == 0) {
+                Markdown();
+                mdui.snackbar({
+                    message: '还没有选择文档呢',
+                    position: 'right-bottom'
+                });
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function fileReadCompleted() {
+                localStorage.setItem("Acdp-Cloud-Markdown", reader.result);
+                Markdown();
+                mdui.snackbar({
+                    message: '导入成功',
+                    position: 'right-bottom'
+                });
+                this.outerHTML = this.outerHTML;
+            };
+            reader.readAsText(this.files[0]);
+        });
+
+        // 导入
+        document.getElementById('local').addEventListener('click', function () {
+            if (mod != "pre") document.getElementById('create').click();
+            Waiting();
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('cloud').addEventListener('click', function () {
+            if (document.getElementById('upload-input').value == "") {
+                mdui.snackbar({
+                    message: '没有写链接呢',
+                    position: 'right-bottom'
+                });
+                return;
+            }
+            if (mod != "pre") document.getElementById('create').click();
+            Waiting();
+            GetReadme(document.getElementById('upload-input').value, function Done() {
+                Markdown();
+                mdui.snackbar({
+                    message: '导入成功',
+                    position: 'right-bottom'
+                });
+            });
+            document.getElementById('upload-input').value = '';
+        });
+
+        // 搜索
+        function find(searchVal) {
+            var temp = localStorage.getItem("Acdp-Cloud-Markdown");
+            var values = temp.split(searchVal);
+            var num = values.length - 1;
+            mdui.snackbar({
+                message: '搜索到 ' + String(num) + ' 处',
+                position: 'right-bottom'
+            });
+            temp = values.join('<span class="mdui-color-yellow">' + searchVal + '</span>');
+            return temp
+        }
+
+        document.getElementById('search-start').addEventListener('click', function () {
+            var key = document.getElementById("search-input").value;
+            document.getElementById("search-input").value = "";
+            if (key == "") {
+                mdui.snackbar({
+                    message: '没有关键词呢',
+                    position: 'right-bottom'
+                });
+                return;
+            }
+            if (mod != "pre") {
+                document.getElementById('create').click();
+            }
+            Waiting();
+            Markdown(find(key));
+        });
+
+        // 显示优化
+        function AutoHei() {
+            AutoHeight("org", document.getElementById('appbar').height);
+            var width = GetWidth();
+            if ((width <= 840) & (car == true)) {
+                document.getElementById('card').classList.remove("mdui-shadow-4")
+                document.getElementById('card').classList.add("mdui-shadow-0")
+                document.getElementById('card').classList.remove("mdui-m-y-5")
+                document.getElementById('card').classList.add("mdui-m-b-5")
+                car = false;
+            }
+            if ((width > 840) & (car == false)) {
+                document.getElementById('card').classList.remove("mdui-shadow-0")
+                document.getElementById('card').classList.add("mdui-shadow-4")
+                document.getElementById('card').classList.remove("mdui-m-b-5")
+                document.getElementById('card').classList.add("mdui-m-y-5")
+                car = true;
+            }
+        }
+
+        // 保存到本地
+        function Save() {
+            var file = new File([localStorage.getItem("Acdp-Cloud-Markdown")], "Markdown.md", { type: "text/plain;charset=utf-8" });
+            saveAs(file);
+        }
+
+
+        AutoHei();
+        window.onresize = AutoHei;
+
+        var url = GetKey('src');
+        if (url) {
+            $('#readin').toggleClass('mdui-hidden');
+            GetReadme(document.getElementById('upload-input').value, function Done() {
+                Markdown();
+                mdui.snackbar({
+                    message: '导入成功',
+                    position: 'right-bottom'
+                });
+            });
+        } else {
+            Markdown();
+        }
+
+    </script>
+</body>
+
+</html>

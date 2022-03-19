@@ -143,6 +143,7 @@
         const audio_dotn = ['.mp3', '.ogg', '.wav'];
         const image_dotn = ['.png', '.jpg'];
         const offic_dotn = ['.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx'];
+        const markd_dotn = ['.md', '.cot'];
 
         var now_path = [];
 
@@ -200,6 +201,11 @@
             window.open(url, '_blank');
         }
 
+        function PreviewMark(code) {
+            var url = 'https://acdp.top/cloud/markdown?code=' + code;
+            window.open(url, '_blank');
+        }
+
         function PreviewOpen(code) {
             var url = 'https://acdp.top/cloud/preview?code=' + code;
             window.open(url, '_blank');
@@ -244,7 +250,11 @@
             var type = $(e).parent().attr('val');
             var path = now_path.join('/');
             console.log(name, type, path);
-            GetCode(path, name, PreviewOpen);
+            if (HAS(markd_dotn, Suffix(name))) {
+                GetCode(path, name, PreviewMark);
+            } else {
+                GetCode(path, name, PreviewOpen);
+            }
         }
 
         function CL(e) {
@@ -285,6 +295,9 @@
                     btn = BUTN;
                 } else if (HAS(image_dotn, Suffix(title))) {
                     icon = 'image';
+                    btn = BUTN;
+                } else if (HAS(markd_dotn, Suffix(title))) {
+                    icon = 'book';
                     btn = BUTN;
                 }
             }
