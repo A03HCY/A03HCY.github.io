@@ -437,7 +437,7 @@
                         $('#progress').toggleClass('mdui-hidden');
                         $('#HaveCode').toggleClass('mdui-hidden');
                         $('#waiting-info').text('正在连接到 Acdp Cloud ...');
-                    }, 500);
+                    }, 0);
                 },
                 error: function (xhr, textStatus) {
                     $('#progress').toggleClass('mdui-hidden');
@@ -502,7 +502,7 @@
                 }
             });
         }
-        setTimeout(function () { Online(); }, 500);
+        Online();
 
         function FinCode() {
             var url = 'https://acdp.top/cloud?code=' + $('#code').val();
