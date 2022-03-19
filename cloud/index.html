@@ -136,6 +136,7 @@
 
         const LIST = '<label ondblclick="CL(this)" val="VAL" class="mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons">ICON</i><div class="mdui-list-item-content">TITLE</div>BUTTON</label>';
         const BUTN = '<button onclick="Preview(this);" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">launch</i></button>'
+        const DOWN = '<button onclick="Download(this);" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">arrow_downward</i></button>'
         const FILE = 'insert_drive_file';
         const FOLD = 'folder';
 
@@ -257,6 +258,14 @@
             }
         }
 
+        function Download(e) {
+            var name = $(e).parent().find('.mdui-list-item-content').text();
+            var type = $(e).parent().attr('val');
+            var path = now_path.join('/');
+            console.log(name, type, path);
+            GetCode(path, name, DownCode);
+        }
+
         function CL(e) {
             var name = $(e).find('.mdui-list-item-content').text();
             var type = $(e).attr('val');
@@ -281,7 +290,7 @@
         }
 
         function AddList(type, title) {
-            var btn = '';
+            var btn = DOWN;
 
             if (type == 'folder') {
                 var icon = FOLD;
