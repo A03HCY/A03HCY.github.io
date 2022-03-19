@@ -134,11 +134,26 @@
         var PATH = '';
         var API = 'https://data.acdp.top';
 
-        const LIST = '<label ondblclick="CL(this)" val="VAL" class="mdui-list-item mdui-ripple"><div class="mdui-checkbox"><input type="checkbox"> <i class="mdui-checkbox-icon"></i></div><i class="mdui-list-item-icon mdui-icon material-icons">ICON</i><div class="mdui-list-item-content">TITLE</div><button onclick="Preview(this);" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">open_in_new</i></button></label>';
+        const LIST = '<label ondblclick="CL(this)" val="VAL" class="mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons">ICON</i><div class="mdui-list-item-content">TITLE</div>BUTTON</label>';
+        const BUTN = '<button onclick="Preview(this);" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">lunch</i></button>'
         const FILE = 'insert_drive_file';
         const FOLD = 'folder';
 
+        const video_dotn = ['.mp4', '.ogg'];
+        const audio_dotn = ['.mp3', '.ogg', '.wav'];
+        const image_dotn = ['.png', '.jpg'];
+        const offic_dotn = ['.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx'];
+
         var now_path = [];
+
+        function HAS(org, target) {
+            for (v of org) {
+                if (v === target) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         function DeviceIden() {
             var sUserAgent = navigator.userAgent.toLowerCase();
@@ -248,15 +263,33 @@
             Refresh();
         }
 
+        function Suffix(name) {
+            var filename = name;
+            var index = filename.lastIndexOf(".");
+            var suffix = filename.substr(index + 1);
+            return '.' + suffix;
+        }
+
         function AddList(type, title) {
+            var btn = '';
 
             if (type == 'folder') {
                 var icon = FOLD;
             } else {
                 var icon = FILE;
+                if (HAS(video_dotn, Suffix(title))) {
+                    icon = 'video_label';
+                    btn = BUTN;
+                } else if (HAS(audio_dotn, Suffix(title))) {
+                    icon = 'music_note';
+                    btn = BUTN;
+                } else if (HAS(image_dotn, Suffix(title))) {
+                    icon = 'image';
+                    btn = BUTN;
+                }
             }
 
-            var html = LIST.replace('VAL', type).replace('ICON', icon).replace('TITLE', title);
+            var html = LIST.replace('VAL', type).replace('ICON', icon).replace('TITLE', title).replace('BUTTON', btn);
             $('#show-list').html($('#show-list').html() + html);
         }
 
