@@ -50,7 +50,7 @@
         var API = 'https://data.acdp.top';
         var API_FILE = 'http://data.acdp.top';
 
-        const video_dotn = ['.mp4', '.ogm'];
+        const video_dotn = ['.mp4', '.ogm', '.flv'];
         const audio_dotn = ['.mp3', '.ogg', '.wav'];
         const image_dotn = ['.png', '.jpg'];
         const offic_dotn = ['.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx'];
@@ -92,6 +92,20 @@
             $('#' + tar).toggleClass('mdui-hidden');
         }
 
+        function FLV(data) {
+            $('#video').toggleClass('mdui-hidden');
+            if (flvjs.isSupported()) {
+                var videoElement = document.getElementById('video');
+                var flvPlayer = flvjs.createPlayer({
+                    type: 'flv',
+                    url: API + '/share/raw?preview=true&code=' + GetKey('code')
+                });
+                flvPlayer.attachMediaElement(videoElement);
+                flvPlayer.load();
+                flvPlayer.play();
+            }
+        }
+
         function LoadFile(data) {
             var dotn = data.dotn;
             if ('info' in data) {
@@ -103,7 +117,8 @@
                 return;
             }
             if (HAS(video_dotn, dotn)) {
-                AVD('video');
+                if (dotn == '.flv') FLV(data);
+                else AVD('video');
             } else if (HAS(audio_dotn, dotn)) {
                 AVD('audio');
                 $('#audio-icon').toggleClass('mdui-hidden');
