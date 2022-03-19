@@ -110,7 +110,7 @@
             } else if (HAS(image_dotn, dotn)) {
                 AVD('image');
             } else if (HAS(offic_dotn, dotn)) {
-                var url = API_FILE + '/share/raw/' + GetKey('code') + '/' + data.name;
+                var url = API_FILE + '/share/raw/' + GetKey('code');
                 url = 'https://view.officeapps.live.com/op/view.aspx?src=' + escape(url);
                 alert(url);
                 location.href = url;
