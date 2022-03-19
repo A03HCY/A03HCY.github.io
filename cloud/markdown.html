@@ -333,10 +333,19 @@
         AutoHei();
         window.onresize = AutoHei;
 
-        var url = GetKey('src');
-        if (url) {
+        if (GetKey('src')) {
             $('#readin').toggleClass('mdui-hidden');
-            GetReadme(document.getElementById('upload-input').value, function Done() {
+            GetReadme(GetKey('src'), function Done() {
+                Markdown();
+                mdui.snackbar({
+                    message: '导入成功',
+                    position: 'right-bottom'
+                });
+            });
+        } else if (GetKey('code')) {
+            var url = API + '/share/raw?code=' + code;
+            $('#readin').toggleClass('mdui-hidden');
+            GetReadme(url, function Done() {
                 Markdown();
                 mdui.snackbar({
                     message: '导入成功',
