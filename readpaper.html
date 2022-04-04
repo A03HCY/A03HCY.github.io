@@ -10,26 +10,19 @@
     <link rel="Shortcut Icon" href="./Resource/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./Resource/css/mdui.min.css" />
     <link rel="stylesheet" href="./Resource/css/dlc.css" />
-    <style>
-        body {
-            background: url(https://baotangguo.cn:8081/) no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-    </style>
-    <title>Acdp | Start</title>
+    <title>ReadPaper</title>
 </head>
 
-<body class="mdui-theme-primary-orange mdui-theme-accent-orange mdui-theme-layout-auto" style="height:100%;">
+<body class="mdui-drawer-body-left mdui-theme-primary-orange mdui-theme-accent-orange mdui-theme-layout-auto"
+    style="height:100%;">
 
     <div class="mdui-appbar mdui-shadow-0">
-        <div class="mdui-toolbar mdui-text-color-white">
-            <a href="javascript:;" class="mdui-btn mdui-btn-icon">
+        <div class="mdui-toolbar">
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#drawer'}">
                 <i class="mdui-icon material-icons">menu</i>
             </a>
             <a href="javascript:;" class="mdui-typo-headline mdui-hidden-xs">Acdp</a>
-            <a href="javascript:;" class="mdui-typo-title">Applications.</a>
+            <a href="javascript:;" class="mdui-typo-title">ReadPaper.</a>
             <div class="mdui-toolbar-spacer"></div>
             <a id="account-ico">
             </a>
@@ -39,7 +32,88 @@
         </div>
     </div>
 
+    <div id="drawer" class="mdui-drawer">
+        <ul id="menu" class="mdui-list" mdui-collapse="{accordion: true}">
+        </ul>
+    </div>
+
+    <div id="md" class="mdui-container">
+
+    </div>
+
     <script src="./Resource/js/mdui.min.js"></script>
+    <script>
+        var $ = mdui.$;
+        const HTML_SH = '<li id="ID" class="mdui-subheader">TITLE</li>';
+        const HTML_SG = '<li id="ID" class="mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons">bookmark</i><div class="mdui-list-item-content">TITLE</div></li>';
+        const HTML_MN = '<li id="ID" class="mdui-collapse-item"><div class="mdui-collapse-item-header mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons">bookmark</i><div class="mdui-list-item-content">TITLE</div><i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i></div><ul id="SUB_ID" class="mdui-collapse-item-body mdui-list mdui-list-dense"></ul></li>';
+        const HTML_MN_SG = '<li id="ID" class="mdui-list-item mdui-ripple">TITLE</li>';
+
+        var data = {
+            'ng': {
+                'title': 'N.G.',
+                'subhead': 'THE END.',
+                'music': '',
+                'image': '',
+                'text': ''
+            },
+            'bset': {
+                'title': 'N.G.',
+                'subhead': 'THE END.',
+                'music': '',
+                'image': '',
+                'text': ''
+            },
+            'cp.1': {
+                'type': 'sub',
+                'data': {
+                    '154': {
+                        'title': 'N.G.',
+                        'subhead': 'THE END.',
+                        'music': '',
+                        'image': '',
+                        'text': ''
+                    },
+                    '23': {
+                        'title': 'N.G.',
+                        'subhead': 'THE END.',
+                        'music': '',
+                        'image': '',
+                        'text': ''
+                    },
+                }
+            },
+        };
+
+        function CreateList(json, id, sub) {
+            var cs = '#' + id;
+            var nd = 1;
+            for (i in json) {
+                var nowid = id + '-' + nd;
+                console.log(i);
+                if (json[i]['type'] == 'sub') {
+                    var item = HTML_MN.replace('ID', nowid).replace('SUB_ID', nowid + '-sub').replace('TITLE', i);
+                    $(cs).html($(cs).html() + item);
+                    CreateList(json[i]['data'], nowid + '-sub', true);
+                } else if (json[i]['type'] == 'line') {
+
+                } else {
+                    if (sub == true) {
+                        var item = HTML_MN_SG
+                    } else {
+                        var item = HTML_SG
+                    }
+                    item = item.replace('ID', nowid).replace('TITLE', i);
+                    $(cs).html($(cs).html() + item);
+                    $('#' + nowid).data(json[i]);
+                }
+                nd += 1;
+            }
+        }
+
+        CreateList(data, 'menu');
+
+    </script>
 </body>
 
 </html>
