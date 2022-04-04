@@ -6,10 +6,10 @@
   height: 45px;
   background: #ffffff;
   align-items: center;
-  border-radius: 22.5px;
+  border-radius: 4px;
   border-style: solid;
   border-width: 1px;
-  border-color: lightgray;
+  border-color: white;
 }
 .search-bar > input {
   flex: 1 1;
@@ -33,9 +33,11 @@
 .search-bar > .mdui-btn-icon {
   margin: auto 11px;
 }
+
 /*暗色模式支持*/
 .mdui-theme-layout-dark .search-bar {
   background: #424242;
+  border-color: #424242;
 }
 .mdui-theme-layout-dark .search-bar > input {
   color: white;
