@@ -45,9 +45,9 @@
     <script>
         var $ = mdui.$;
         const HTML_SH = '<li id="ID" class="mdui-subheader">TITLE</li>';
-        const HTML_SG = '<li id="ID" class="mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons">bookmark</i><div class="mdui-list-item-content">TITLE</div></li>';
+        const HTML_SG = '<li id="ID" onclick="Handle(this)" onc class="mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons">bookmark</i><div class="mdui-list-item-content">TITLE</div></li>';
         const HTML_MN = '<li id="ID" class="mdui-collapse-item"><div class="mdui-collapse-item-header mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons">bookmark</i><div class="mdui-list-item-content">TITLE</div><i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i></div><ul id="SUB_ID" class="mdui-collapse-item-body mdui-list mdui-list-dense"></ul></li>';
-        const HTML_MN_SG = '<li id="ID" class="mdui-list-item mdui-ripple">TITLE</li>';
+        const HTML_MN_SG = '<li id="ID" onclick="Handle(this)" class="mdui-list-item mdui-ripple">TITLE</li>';
 
         var data = {
             'ng': {
@@ -85,7 +85,12 @@
             },
         };
 
+        function Handle(node) {
+            console.log($.data(node, 'info'));
+        }
+
         function CreateList(json, id, sub) {
+            var dic = new Array();
             var cs = '#' + id;
             var nd = 1;
             for (i in json) {
@@ -100,15 +105,18 @@
                 } else {
                     if (sub == true) {
                         var item = HTML_MN_SG
+                        item = item.replace('ID', nowid).replace('TITLE', i);
+                        $(cs).html(item + $(cs).html());
                     } else {
                         var item = HTML_SG
+                        item = item.replace('ID', nowid).replace('TITLE', i);
+                        $(cs).html($(cs).html() + item);
                     }
-                    item = item.replace('ID', nowid).replace('TITLE', i);
-                    $(cs).html($(cs).html() + item);
-                    $('#' + nowid).data(json[i]);
                 }
+                dic[nowid] = json[i];
                 nd += 1;
             }
+            console.log(dic);
         }
 
         CreateList(data, 'menu');
